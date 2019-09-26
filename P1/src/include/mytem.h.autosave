@@ -1,0 +1,21 @@
+#ifndef MYTEM_H
+#define MYTEM_H
+
+#include <QGraphicsItem>
+#include <QPointF>
+#include <QSizeF>
+
+class Mytem : public QGraphicsItem
+{
+public:
+    Mytem(QGraphicsItem * parent=nullptr);
+    QRectF	boundingRect() const;    
+    void	paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget = 0) ;
+
+private:
+    QPointF mPos; //posx , posy
+    QPointF mVel; //velocidad x y velocidad y
+    QSizeF mSize
+};
+
+#endif // MYTEM_H
