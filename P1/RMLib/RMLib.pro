@@ -4,8 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       -= core gui
-
+#QT       -= core gui
+QT       += core gui multimedia multimediawidgets
 TARGET = RMLib
 TEMPLATE = lib
 CONFIG += staticlib
@@ -55,7 +55,8 @@ SOURCES += \
     src/cpp/sll_t.cpp \
     src/cpp/vector_t.cpp \
     src/cpp/matricula_t.cpp \
-    src/cpp/grafo.cpp
+    src/cpp/grafo.cpp \
+    src/cpp/aboutdialog.cpp
 
 
 HEADERS += \
@@ -73,9 +74,15 @@ HEADERS += \
     src/include/sll_t.hpp \
     src/include/vector_t.hpp \
     src/include/matricula_t.hpp \
-    src/include/grafo.hpp
+    src/include/grafo.hpp \
+    src/include/aboutdialog.hpp
+
+FORMS += \
+        src/Forms/aboutdialog.ui
 
 
+RESOURCES += \
+    src/qrc/recursos.qrc
 
 INCLUDEPATH += $$PWD/src/include
 DEPENDPATH += $$PWD/src/include

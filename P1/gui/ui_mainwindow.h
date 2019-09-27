@@ -10,10 +10,12 @@
 #define UI_MAINWINDOW_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
@@ -28,6 +30,7 @@ public:
     QGridLayout *gridLayout;
     QGraphicsView *graphicsView;
     QMenuBar *menuBar;
+    QMenu *menuOpciones;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -51,6 +54,8 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 838, 21));
+        menuOpciones = new QMenu(menuBar);
+        menuOpciones->setObjectName(QString::fromUtf8("menuOpciones"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -58,6 +63,8 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
+
+        menuBar->addAction(menuOpciones->menuAction());
 
         retranslateUi(MainWindow);
 
@@ -67,6 +74,7 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", nullptr));
+        menuOpciones->setTitle(QApplication::translate("MainWindow", "Opciones", nullptr));
     } // retranslateUi
 
 };

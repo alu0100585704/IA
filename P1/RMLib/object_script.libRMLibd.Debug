@@ -11,4 +11,7 @@ ADDMOD tmp/o/sll_t.o
 ADDMOD tmp/o/vector_t.o
 ADDMOD tmp/o/matricula_t.o
 ADDMOD tmp/o/grafo.o
+ADDMOD tmp/o/aboutdialog.o
+ADDMOD tmp/o/qrc_recursos.o
+ADDMOD tmp/o/moc_aboutdialog.o
 SAVE

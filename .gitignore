@@ -1,3 +1,8 @@
+p1/*/tmp
+p1/*/debug
+p1/*/release
+*.pro.user*
+
 # Prerequisites
 *.d
 
@@ -16,6 +21,3 @@
 *.mod
 *.smod
 
-p1/*/tmp
-p1/*/debug
-p1/*/release

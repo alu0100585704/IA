@@ -233,6 +233,9 @@ Makefile: RMLib.pro ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/win32-g++/
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/precompile_header.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/warn_on.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/qt.prf \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/moc.prf \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/win32/opengl.prf \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/uic.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/qmake_use.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/file_copies.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/win32/windows.prf \
@@ -240,7 +243,13 @@ Makefile: RMLib.pro ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/win32-g++/
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/exceptions.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/yacc.prf \
 		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/lex.prf \
-		RMLib.pro
+		RMLib.pro \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5MultimediaWidgets.prl \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Multimedia.prl \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Widgets.prl \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Gui.prl \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Network.prl \
+		../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile RMLib.pro -spec win32-g++ CONFIG+=qtquickcompiler
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/spec_pre.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/qdevice.pri:
@@ -414,6 +423,9 @@ Makefile: RMLib.pro ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/win32-g++/
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/precompile_header.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/warn_on.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/qt.prf:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/moc.prf:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/win32/opengl.prf:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/uic.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/qmake_use.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/file_copies.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/win32/windows.prf:
@@ -422,6 +434,12 @@ Makefile: RMLib.pro ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/win32-g++/
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/yacc.prf:
 ../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/features/lex.prf:
 RMLib.pro:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5MultimediaWidgets.prl:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Multimedia.prl:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Widgets.prl:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Gui.prl:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Network.prl:
+../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile RMLib.pro -spec win32-g++ CONFIG+=qtquickcompiler
 
@@ -433,6 +451,18 @@ clean: release-clean debug-clean  FORCE
 distclean: release-distclean debug-distclean  FORCE
 	-$(DEL_FILE) Makefile
 	-$(DEL_FILE) .qmake.stash
+
+release-mocclean:
+	$(MAKE) -f $(MAKEFILE).Release mocclean
+debug-mocclean:
+	$(MAKE) -f $(MAKEFILE).Debug mocclean
+mocclean: release-mocclean debug-mocclean
+
+release-mocables:
+	$(MAKE) -f $(MAKEFILE).Release mocables
+debug-mocables:
+	$(MAKE) -f $(MAKEFILE).Debug mocables
+mocables: release-mocables debug-mocables
 
 check: first
 
