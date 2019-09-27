@@ -1,0 +1,14 @@
+CREATE release/libRMLib.a
+ADDMOD tmp/o/rmlib.o
+ADDMOD tmp/o/ArbolBB_t.o
+ADDMOD tmp/o/nodoBB_t.o
+ADDMOD tmp/o/dll_node_t.o
+ADDMOD tmp/o/dll_t.o
+ADDMOD tmp/o/AVL_t.o
+ADDMOD tmp/o/nodoAVL_t.o
+ADDMOD tmp/o/sll_node_t.o
+ADDMOD tmp/o/sll_t.o
+ADDMOD tmp/o/vector_t.o
+ADDMOD tmp/o/matricula_t.o
+ADDMOD tmp/o/grafo.o
+SAVE
