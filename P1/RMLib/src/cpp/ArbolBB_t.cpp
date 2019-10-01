@@ -86,7 +86,7 @@ void ArbolBB_t<T>::Eliminar( T &  clave)
     EliminarRama(raiz_, clave) ;
 }
 template <class T>
-ArbolBB_t<T>::EliminarRama( nodoBB_t<T> * & nodo,T  & clave)
+int ArbolBB_t<T>::EliminarRama( nodoBB_t<T> * & nodo,T  & clave)
 {
     if (nodo == NULL)
         return 0;

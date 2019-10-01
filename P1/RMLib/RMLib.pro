@@ -4,8 +4,9 @@
 #
 #-------------------------------------------------
 
-#QT       -= core gui
-QT       += core gui multimedia multimediawidgets
+QT       += core gui
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+#QT       += core gui multimedia multimediawidgets
 TARGET = RMLib
 TEMPLATE = lib
 CONFIG += staticlib
@@ -56,7 +57,9 @@ SOURCES += \
     src/cpp/vector_t.cpp \
     src/cpp/matricula_t.cpp \
     src/cpp/grafo.cpp \
-    src/cpp/aboutdialog.cpp
+    src/cpp/aboutdialog.cpp \
+    src/cpp/grafodll_t.cpp \
+    src/cpp/grafodll_node_t.cpp
 
 
 HEADERS += \
@@ -75,7 +78,9 @@ HEADERS += \
     src/include/vector_t.hpp \
     src/include/matricula_t.hpp \
     src/include/grafo.hpp \
-    src/include/aboutdialog.hpp
+    src/include/aboutdialog.hpp \
+    src/include/grafodll_node_t.hpp \
+    src/include/grafodll_t.hpp
 
 FORMS += \
         src/Forms/aboutdialog.ui

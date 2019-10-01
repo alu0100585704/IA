@@ -1,8 +1,7 @@
-#ifndef ABOUTDIALOG_H
-#define ABOUTDIALOG_H
-
+#pragma once
 #include <QDialog>
 #include <QAbstractButton>
+
 namespace Ui {
 class AboutDialog;
 }
@@ -23,4 +22,3 @@ private:
     Ui::AboutDialog *ui;
 };
 
-#endif // ABOUTDIALOG_H

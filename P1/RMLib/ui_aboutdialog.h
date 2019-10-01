@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aboutdialog.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.0
+** Created by: Qt User Interface Compiler version 5.9.5
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -10,10 +10,13 @@
 #define UI_ABOUTDIALOG_H
 
 #include <QtCore/QVariant>
+#include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QVBoxLayout>
 
@@ -31,7 +34,7 @@ public:
     void setupUi(QDialog *AboutDialog)
     {
         if (AboutDialog->objectName().isEmpty())
-            AboutDialog->setObjectName(QString::fromUtf8("AboutDialog"));
+            AboutDialog->setObjectName(QStringLiteral("AboutDialog"));
         AboutDialog->resize(724, 510);
         QSizePolicy sizePolicy(QSizePolicy::Ignored, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
@@ -39,11 +42,11 @@ public:
         sizePolicy.setHeightForWidth(AboutDialog->sizePolicy().hasHeightForWidth());
         AboutDialog->setSizePolicy(sizePolicy);
         verticalLayout = new QVBoxLayout(AboutDialog);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         label_2 = new QLabel(AboutDialog);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setObjectName(QStringLiteral("label_2"));
         QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Minimum);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -60,7 +63,7 @@ public:
         horizontalLayout->addWidget(label_2);
 
         label = new QLabel(AboutDialog);
-        label->setObjectName(QString::fromUtf8("label"));
+        label->setObjectName(QStringLiteral("label"));
         QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Minimum);
         sizePolicy2.setHorizontalStretch(0);
         sizePolicy2.setVerticalStretch(0);
@@ -84,7 +87,7 @@ public:
         verticalLayout->addLayout(horizontalLayout);
 
         buttonBox = new QDialogButtonBox(AboutDialog);
-        buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
+        buttonBox->setObjectName(QStringLiteral("buttonBox"));
         QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Fixed);
         sizePolicy3.setHorizontalStretch(0);
         sizePolicy3.setVerticalStretch(0);
@@ -102,9 +105,9 @@ public:
 
     void retranslateUi(QDialog *AboutDialog)
     {
-        AboutDialog->setWindowTitle(QApplication::translate("AboutDialog", "Dialog", nullptr));
+        AboutDialog->setWindowTitle(QApplication::translate("AboutDialog", "Dialog", Q_NULLPTR));
         label_2->setText(QString());
-        label->setText(QApplication::translate("AboutDialog", "<html><head/><body><p><br/></p><p><span style=\" font-size:14pt;\">RM Multimedia </span></p><p><span style=\" font-size:10pt;\">Creado en QtCreator C++ </span></p><p><span style=\" font-size:10pt;\">Licencia Open Source</span></p><p><span style=\" font-size:10pt;\">Version 1.0</span></p><p><span style=\" font-size:10pt;\">26-05-2019</span></p><p><span style=\" font-size:10pt;\">Creado por:</span></p><p><span style=\" font-size:10pt;\">Juan Siverio Rojas</span></p><p><span style=\" font-size:12pt;\"><br/></span></p><p><span style=\" font-size:12pt;\"><br/></span></p></body></html>", nullptr));
+        label->setText(QApplication::translate("AboutDialog", "<html><head/><body><p><br/></p><p><span style=\" font-size:14pt;\">RM Multimedia </span></p><p><span style=\" font-size:10pt;\">Creado en QtCreator C++ </span></p><p><span style=\" font-size:10pt;\">Licencia Open Source</span></p><p><span style=\" font-size:10pt;\">Version 1.0</span></p><p><span style=\" font-size:10pt;\">26-05-2019</span></p><p><span style=\" font-size:10pt;\">Creado por:</span></p><p><span style=\" font-size:10pt;\">Juan Siverio Rojas</span></p><p><span style=\" font-size:12pt;\"><br/></span></p><p><span style=\" font-size:12pt;\"><br/></span></p></body></html>", Q_NULLPTR));
     } // retranslateUi
 
 };

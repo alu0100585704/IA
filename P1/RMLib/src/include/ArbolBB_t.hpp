@@ -35,7 +35,7 @@ public:
     nodoBB_t<T>* Buscar(T & clave);
     nodoBB_t<T>* BuscarRama( nodoBB_t<T>*& nodo,T & clave);
     void InsertarRama( nodoBB_t<T>* & nodo,T &clave,int nivel);
-    EliminarRama( nodoBB_t<T> * & nodo,T  & clave);
+    int EliminarRama( nodoBB_t<T> * & nodo,T  & clave);
         ostream & write(int modo,ostream & os);
 
 };
