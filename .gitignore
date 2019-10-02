@@ -1,23 +1,6 @@
-p1/*/tmp
-p1/*/debug
-p1/*/release
-*.pro.user*
+*/*/tmp
+*/*/debug
+*/*/release
+*/*.pro.user*
 
-# Prerequisites
-*.d
-
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
-
-# Precompiled Headers
-*.gch
-*.pch
-
-
-# Fortran module files
-*.mod
-*.smod
 

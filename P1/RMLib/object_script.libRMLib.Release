@@ -12,6 +12,9 @@ ADDMOD tmp/o/vector_t.o
 ADDMOD tmp/o/matricula_t.o
 ADDMOD tmp/o/grafo.o
 ADDMOD tmp/o/aboutdialog.o
+ADDMOD tmp/o/GrafoIA_t.o
+ADDMOD tmp/o/NodeIA_t.o
+ADDMOD tmp/o/EstadoIA_t.o
 ADDMOD tmp/o/qrc_recursos.o
 ADDMOD tmp/o/moc_aboutdialog.o
 SAVE

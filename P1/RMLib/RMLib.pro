@@ -58,8 +58,9 @@ SOURCES += \
     src/cpp/matricula_t.cpp \
     src/cpp/grafo.cpp \
     src/cpp/aboutdialog.cpp \
-    src/cpp/grafodll_t.cpp \
-    src/cpp/grafodll_node_t.cpp
+    src/cpp/GrafoIA_t.cpp \
+    src/cpp/NodeIA_t.cpp \
+    src/cpp/EstadoIA_t.cpp
 
 
 HEADERS += \
@@ -79,8 +80,9 @@ HEADERS += \
     src/include/matricula_t.hpp \
     src/include/grafo.hpp \
     src/include/aboutdialog.hpp \
-    src/include/grafodll_node_t.hpp \
-    src/include/grafodll_t.hpp
+    src/include/GrafoIA_t.hpp \
+    src/include/EstadoIA_t.hpp \
+    src/include/NodeIA_t.hpp
 
 FORMS += \
         src/Forms/aboutdialog.ui

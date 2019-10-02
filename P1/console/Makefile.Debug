@@ -14,7 +14,7 @@ CXX           = g++
 DEFINES       = -DUNICODE -D_UNICODE -DWIN32 -DMINGW_HAS_SECURE_API=1 -DQT_DEPRECATED_WARNINGS -DQT_CORE_LIB
 CFLAGS        = -fno-keep-inline-dllexport -g -Wall -W -Wextra $(DEFINES)
 CXXFLAGS      = -fno-keep-inline-dllexport -g -std=gnu++11 -Wall -W -Wextra -fexceptions -mthreads $(DEFINES)
-INCPATH       = -I. -I../RMLib/src/include -I../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/include -I../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/include/QtCore -Itmp/moc -I../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/win32-g++ 
+INCPATH       = -I. -I../RMLib/src/include -I../RMLib -I../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/include -I../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/include/QtCore -Itmp/moc -I../../../../Qt/Qt5.12.0/5.12.0/mingw73_64/mkspecs/win32-g++ 
 LINKER      =        g++
 LFLAGS        =        -Wl,-subsystem,console -mthreads
 LIBS        =        -LC:/git/IA/P1/RMLib/debug -lRMLibd -LC:/Qt/Qt5.12.0/5.12.0/mingw73_64/lib C:/Qt/Qt5.12.0/5.12.0/mingw73_64/lib/libQt5Cored.a   
