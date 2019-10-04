@@ -1,6 +1,6 @@
 #pragma once
 #include <QGraphicsScene>
-#include <myitem.h>
+
 class MyScene : public QGraphicsScene
 {
     Q_OBJECT

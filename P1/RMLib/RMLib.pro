@@ -4,9 +4,12 @@
 #
 #-------------------------------------------------
 
+#QT       -= gui
+#QT       += core gui multimedia multimediawidgets
+
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-#QT       += core gui multimedia multimediawidgets
+
 TARGET = RMLib
 TEMPLATE = lib
 CONFIG += staticlib
@@ -46,20 +49,11 @@ win32::RCC_DIR = $$PWD/tmp/resources
 
 SOURCES += \
         src/cpp/rmlib.cpp \
-    src/cpp/ArbolBB_t.cpp \
-    src/cpp/nodoBB_t.cpp \
-    src/cpp/dll_node_t.cpp \
-    src/cpp/dll_t.cpp \
-    src/cpp/AVL_t.cpp \
-    src/cpp/nodoAVL_t.cpp \
     src/cpp/sll_node_t.cpp \
     src/cpp/sll_t.cpp \
     src/cpp/vector_t.cpp \
     src/cpp/matricula_t.cpp \
     src/cpp/grafo.cpp \
-    src/cpp/aboutdialog.cpp \
-    src/cpp/GrafoIA_t.cpp \
-    src/cpp/NodeIA_t.cpp \
     src/cpp/EstadoIA_t.cpp
 
 
@@ -79,13 +73,11 @@ HEADERS += \
     src/include/vector_t.hpp \
     src/include/matricula_t.hpp \
     src/include/grafo.hpp \
-    src/include/aboutdialog.hpp \
     src/include/GrafoIA_t.hpp \
     src/include/EstadoIA_t.hpp \
     src/include/NodeIA_t.hpp
 
-FORMS += \
-        src/Forms/aboutdialog.ui
+FORMS +=
 
 
 RESOURCES += \

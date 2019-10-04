@@ -1,4 +1,6 @@
-QT -= gui
+QT       += core
+
+
 TARGET = p1console
 
 CONFIG += c++11 console

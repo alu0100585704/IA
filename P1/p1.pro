@@ -1,5 +1,4 @@
 TEMPLATE = subdirs
-SUBDIRS += \
-    gui \
+SUBDIRS += \    
     console \
     RMLib
