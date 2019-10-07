@@ -18,6 +18,10 @@ public:
      NodeIA_t();
        ~NodeIA_t();
        void limpiar();
+
+       template <class U>
+       friend ostream & operator << (ostream & os, NodeIA_t<U> & valor);
+
 };
 
 template <class T>
@@ -47,5 +51,13 @@ void NodeIA_t<T>::limpiar()
    estudiado_=false;
    estado_.limpiar();
    LS_.limpiar();
+
+}
+
+template <class U>
+ostream & operator << (ostream & os, NodeIA_t<U> &valor)
+{
+    os << valor.estado_;
+return os;
 
 }

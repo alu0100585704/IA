@@ -12,7 +12,7 @@ using namespace RMLIB;
 //funcion prototipo
 void menu(void);
 void abrir_fichero(void);
-
+GrafoIA_t<EstadoIA_t> migrafo;
 
 int main(int argc, char *argv[])
 {
@@ -26,8 +26,7 @@ int main(int argc, char *argv[])
 
 
 void abrir_fichero(void)
-{
-    GrafoIA_t<EstadoIA_t> migrafo;
+{    
 
     char nombrefichero[80];
 
@@ -57,6 +56,7 @@ void menu(void)
     borrar_pantalla();
     cout << "\n\n Practica 1. Inteligencia Artificial \n\n";
     cout << "\n c. [c]argar grafo desde fichero";
+    cout << "\n m. [m]mostrar fichero cargado";
     cout << "\n q. Finalizar programa";
 
 
@@ -68,7 +68,21 @@ void menu(void)
     {
         case 'c':
             abrir_fichero();
+            tecla();
+            tecla();
+
         break;
+    case 'm':
+        if (!migrafo.empy())
+             cout << migrafo ;
+        else {
+            cout << "Grafo no cargado o vacío" << endl;
+        }
+         tecla();
+         tecla();
+
+    break;
+
     }
 
   }   while ((opcion!='q') && (opcion !='Q') );

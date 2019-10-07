@@ -44,8 +44,9 @@ namespace RMLIB {
         
 	ostream& write(ostream& os) const;
         
-        template <class U>
-        friend ostream & operator << (ostream & os, dll_node_t<U> & valor);
+      template <class U>
+      friend ostream & operator << (ostream & os, dll_node_t<U> & valor);
+
 
     };
 
@@ -150,7 +151,7 @@ namespace RMLIB {
     template <class U>
     ostream & operator << (ostream & os, dll_node_t<U> & valor)
     {
-                os << valor.data_;
+        os << valor.data_;
         return os;
     }
 

@@ -75,6 +75,7 @@ namespace RMLIB {
                    
         template <class U>
         friend ostream & operator << (ostream & os, dll_t<U> & valor);
+
             
     };
 
@@ -468,8 +469,12 @@ ostream & operator << (ostream & os, dll_t<U> & valor)
 {
 dll_node_t<U>* aux = valor.head_;
 
+  if (valor.empty())
+      os << "Vacio";
+  else
         while (aux != NULL) {
-            os << aux;
+
+            os << " : Nodo : " << *aux;
             aux = aux->get_next();
         }
 

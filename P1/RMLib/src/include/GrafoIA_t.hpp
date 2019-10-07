@@ -5,6 +5,7 @@
 #include <EstadoIA_t.hpp>
 #include <dll_node_t.hpp>
 #include <fstream>
+#include <iostream>
 using namespace std;
 
 template <class T>
@@ -25,11 +26,31 @@ public:
     ~GrafoIA_t();
 
     bool actualizar(char nombrefichero[]);
-    void limpiar();
+    bool empy();
+    void limpiar();    
 
+    template<class U>
+    friend ostream & operator << (ostream & os, GrafoIA_t<U> &valor);
 
 };
 
+//muestra el grafo como un árbol.
+template<class U>
+ostream & operator << (ostream & os, GrafoIA_t<U> & valor)
+{
+    RMLIB::dll_node_t<NodeIA_t<U>> * aux = valor.grafo_.get_head_nodo();
+
+                    while (aux != NULL) {
+
+                        os << endl << "El Nodo : " << *aux << " es padre de : " << endl;
+                        os << aux->get_set_data().LS_ << endl;
+                        aux = aux->get_next();
+                    }
+
+
+   return os;
+
+}
 
 
 template<class T>
@@ -55,6 +76,7 @@ template<class T>
 bool GrafoIA_t<T>::actualizar(char nombrefichero[])
 {
     int i, j;
+    double temp;
     ifstream fichero_grafo;
 
     limpiar(); //por si acaso ya se hab�a abierto alg�n fichero, libero las posibles bloques de memoria reservados.
@@ -66,16 +88,22 @@ bool GrafoIA_t<T>::actualizar(char nombrefichero[])
         fichero_grafo >> numeroNodos_;
          for (int i=1; i < numeroNodos_;i++)
          {
+
              grafo_.insert_tail_valor(); //crea nodo nuevo.
-             grafo_.get_set_tail_valor().estado_=1;
+             grafo_.get_set_tail_valor().estado_=i;
 
 
              for (int j=0; j < numeroNodos_-i;j++)
              {
-                 grafo_.get_set_tail_valor().LS_.insert_tail_valor();
-                 grafo_.get_set_tail_valor().LS_.get_set_tail_valor().estado_=i+j+1;
+                 fichero_grafo >> temp; //leo el costo
+                 if (temp!=-1) //si es igual a -1, valor escogido para infinito, o sea, inalcanzable.
+                 {
+                     grafo_.get_set_tail_valor().LS_.insert_tail_valor();
+                     grafo_.get_set_tail_valor().LS_.get_set_tail_valor().estado_=i+j+1;
+                     grafo_.get_set_tail_valor().LS_.get_set_tail_valor().costo_==temp;  //lo que costó ir hasta el siguiente
 
-                fichero_grafo >> grafo_.get_set_tail_valor().LS_.get_set_tail_valor().costo_;  //lo que costó ir hasta el siguiente
+                 }
+
              }
 
 
@@ -91,6 +119,15 @@ bool GrafoIA_t<T>::actualizar(char nombrefichero[])
     }
       else return false;
 
+}
+
+template<class T>
+bool GrafoIA_t<T>::empy()
+{
+
+    if (numeroNodos_==0)
+        return 1;
+    else return 0;
 }
 
 template<class T>

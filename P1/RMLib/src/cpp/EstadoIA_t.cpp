@@ -1,3 +1,4 @@
+#include <iostream>
 #include <EstadoIA_t.hpp>
 #include <string>
 using namespace std;
@@ -41,4 +42,11 @@ void EstadoIA_t::limpiar()
 {
     valor_="";
     id_=-1;
+}
+
+ostream & operator << (ostream & os, EstadoIA_t &valor)
+{
+    os <<  valor.id_;
+return os;
+
 }

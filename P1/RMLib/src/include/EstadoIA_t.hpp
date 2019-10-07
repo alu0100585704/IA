@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <iostream>
+using namespace std;
 
 class EstadoIA_t {
 
@@ -18,5 +20,7 @@ public:
 
     void limpiar();
 
+    friend ostream & operator << (ostream & os,EstadoIA_t & valor);
 
 };
+
