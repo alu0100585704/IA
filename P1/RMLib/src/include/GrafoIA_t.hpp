@@ -85,7 +85,8 @@ bool GrafoIA_t<T>::actualizar(char nombrefichero[])
 
     if (fichero_grafo.is_open())
     {
-        fichero_grafo >> numeroNodos_;
+        /* Version nodos independientes.
+         * fichero_grafo >> numeroNodos_;
          for (int i=1; i < numeroNodos_;i++)
          {
 
@@ -112,6 +113,30 @@ bool GrafoIA_t<T>::actualizar(char nombrefichero[])
          grafo_.insert_tail_valor(); //crea nodo nuevo.
          grafo_.get_set_tail_valor().estado_=numeroNodos_;
 
+         */
+
+        //version nodos entrelazados entre si
+
+         fichero_grafo >> numeroNodos_;
+        for (int i=1; i <= numeroNodos_;i++)
+                grafo_.insert_tail_valor(); //crea nodo nuevo.
+
+
+            grafo_.get_set_tail_valor().estado_=i;
+
+
+            for (int j=0; j < numeroNodos_-i;j++)
+            {
+                fichero_grafo >> temp; //leo el costo
+                if (temp!=-1) //si es igual a -1, valor escogido para infinito, o sea, inalcanzable.
+                {
+                    grafo_.get_set_tail_valor().LS_.insert_tail_valor();
+                    grafo_.get_set_tail_valor().LS_.get_set_tail_valor().estado_=i+j+1;
+                    grafo_.get_set_tail_valor().LS_.get_set_tail_valor().costo_==temp;  //lo que costó ir hasta el siguiente
+
+                }
+
+            }
 
          fichero_grafo.close();
         return true;
