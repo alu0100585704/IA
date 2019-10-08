@@ -1,11 +1,12 @@
 #pragma once
-
+#include <utility>
 #include <dll_t.hpp>
 #include <NodeIA_t.hpp>
 #include <EstadoIA_t.hpp>
 #include <dll_node_t.hpp>
 #include <fstream>
 #include <iostream>
+#include <vector>
 using namespace std;
 
 template <class T>
@@ -13,7 +14,7 @@ class GrafoIA_t {
 
 private:
 
- RMLIB::dll_t<NodeIA_t<T>> grafo_;
+ vector<NodeIA_t<T>> grafo_;
  int numeroNodos_;
 
 public:
@@ -38,14 +39,15 @@ public:
 template<class U>
 ostream & operator << (ostream & os, GrafoIA_t<U> & valor)
 {
-    RMLIB::dll_node_t<NodeIA_t<U>> * aux = valor.grafo_.get_head_nodo();
 
-                    while (aux != NULL) {
+   for (int i=0; i < valor.grafo_.size(); i++)
+   {
+               os << endl << "El nodo : " << valor.grafo_[i].estado_.id_ << "es padre de : " << endl;
 
-                        os << endl << "El Nodo : " << *aux << " es padre de : " << endl;
-                        os << aux->get_set_data().LS_ << endl;
-                        aux = aux->get_next();
-                    }
+               for(int j=0; j< valor.grafo_[i].LS_.size();j++)
+                   os << "Nodo : "<< valor.grafo_[i].LS_[j].first.first << " Costo: " <<valor.grafo_[i].LS_[j].first.second << endl;
+
+    }
 
 
    return os;
@@ -78,6 +80,8 @@ bool GrafoIA_t<T>::actualizar(char nombrefichero[])
     int i, j;
     double temp;
     ifstream fichero_grafo;
+    NodeIA_t<T> nodo;
+    pair<pair<int,double>,NodeIA_t<T>*> sucesor;
 
     limpiar(); //por si acaso ya se hab�a abierto alg�n fichero, libero las posibles bloques de memoria reservados.
 
@@ -85,58 +89,38 @@ bool GrafoIA_t<T>::actualizar(char nombrefichero[])
 
     if (fichero_grafo.is_open())
     {
-        /* Version nodos independientes.
-         * fichero_grafo >> numeroNodos_;
-         for (int i=1; i < numeroNodos_;i++)
-         {
-
-             grafo_.insert_tail_valor(); //crea nodo nuevo.
-             grafo_.get_set_tail_valor().estado_=i;
-
-
-             for (int j=0; j < numeroNodos_-i;j++)
-             {
-                 fichero_grafo >> temp; //leo el costo
-                 if (temp!=-1) //si es igual a -1, valor escogido para infinito, o sea, inalcanzable.
-                 {
-                     grafo_.get_set_tail_valor().LS_.insert_tail_valor();
-                     grafo_.get_set_tail_valor().LS_.get_set_tail_valor().estado_=i+j+1;
-                     grafo_.get_set_tail_valor().LS_.get_set_tail_valor().costo_==temp;  //lo que costó ir hasta el siguiente
-
-                 }
-
-             }
-
-
-         }
-
-         grafo_.insert_tail_valor(); //crea nodo nuevo.
-         grafo_.get_set_tail_valor().estado_=numeroNodos_;
-
-         */
-
         //version nodos entrelazados entre si
 
          fichero_grafo >> numeroNodos_;
-        for (int i=1; i <= numeroNodos_;i++)
-                grafo_.insert_tail_valor(); //crea nodo nuevo.
 
+         for (int i=1; i <= numeroNodos_;i++)
+         {
+                     nodo.estado_.id_=i;
+                     grafo_.push_back(nodo);  //creo todos los nodos de entrada.
+          }
 
-            grafo_.get_set_tail_valor().estado_=i;
-
-
-            for (int j=0; j < numeroNodos_-i;j++)
+         for (int i=1; i < numeroNodos_;i++)
+         {
+             for (int j=0; j < numeroNodos_-i;j++)
             {
                 fichero_grafo >> temp; //leo el costo
+
                 if (temp!=-1) //si es igual a -1, valor escogido para infinito, o sea, inalcanzable.
                 {
-                    grafo_.get_set_tail_valor().LS_.insert_tail_valor();
-                    grafo_.get_set_tail_valor().LS_.get_set_tail_valor().estado_=i+j+1;
-                    grafo_.get_set_tail_valor().LS_.get_set_tail_valor().costo_==temp;  //lo que costó ir hasta el siguiente
+                    sucesor.first.first=i+j+1; //numero de nodo sucesor
+                    sucesor.first.second=temp; //costo para llegar a ese nodo
+                    sucesor.second=NULL; //inicialmente el puntero hacia el sucesor es  nulo, este valor lo modifica solo el arbol de búsqueda.
+                    grafo_[i-1].LS_.push_back(sucesor);
+
+                    sucesor.first.first=i;     //indico al sucesor que este nodo es predecesor
+                    grafo_[i+j].LS_.push_back(sucesor);
 
                 }
 
             }
+
+           }
+
 
          fichero_grafo.close();
         return true;
@@ -158,6 +142,6 @@ bool GrafoIA_t<T>::empy()
 template<class T>
 void GrafoIA_t<T>::limpiar()
 {
-    grafo_.limpiar();
+    grafo_.clear();
     numeroNodos_=0;
 }
