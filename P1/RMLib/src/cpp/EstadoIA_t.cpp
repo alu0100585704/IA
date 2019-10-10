@@ -23,19 +23,36 @@ EstadoIA_t::~EstadoIA_t()
 
 void EstadoIA_t::operator=(string valor)
 {
-    valor_=valor;
+    this->valor_=valor;
 
 }
 
 void EstadoIA_t::operator=(int valor)
 {
-    id_=valor;
+    this->id_=valor;
 }
 
-void EstadoIA_t::operator=(EstadoIA_t valor)
+void EstadoIA_t::operator=(EstadoIA_t &valor)
 {
-    valor_=valor.valor_;
-    id_=valor.id_;
+    this->valor_=valor.valor_;
+    this->id_=valor.id_;
+}
+
+bool EstadoIA_t::operator ==(const EstadoIA_t &valor) const
+{
+    if (this->id_==valor.id_)
+        return 1;
+    else return 0;
+
+}
+
+bool EstadoIA_t::operator <(const EstadoIA_t &valor) const
+{
+    if (this->id_< valor.id_)
+            return 1;
+       else
+            return 0;
+
 }
 
 void EstadoIA_t::limpiar()

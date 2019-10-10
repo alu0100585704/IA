@@ -4,21 +4,26 @@
 #include <set>
 #include <utility>
 #include <vector>
-template <class T>
+
 class NodeIA_t {
 
 public:
 
-    T  estado_;
-    vector<pair<pair<int,double>,NodeIA_t<T>*>> LS_; //conjunto de parejas.
+    EstadoIA_t  estado_;
+    //vector<pair<pair<int,double>,NodeIA_t<T>*>> LS_; //conjunto de parejas.
      //pareja.first = pareja de numero de nodos y costo del nodo
     //pareja.second = puntero hacia nodo NodeIA_t<T> *, contendrá NULL en el grafo y
     //posición hacia un  nodo en memoria durante el arbol de busqueda IA.
 
     //atributos usados al crear el árbol de búsqueda
+
+    vector<pair<int,double>> LS_; //conjunto de parejas. numero de nodo y costo
+    double  valorHeuristico_;  //h(n) valor heuristico hasta el nodo objetivo.
+    double  costoCamino_;  //funcion g(n) //costo real del camino hasta el nodo
+    double  costoCaminoMasHeuristico_; //funcion F(n)=g(n) +h(n)
     int profundidad_;
     string accion_;
-    NodeIA_t<T> * padre_; //puntero hacia un único padre."para los árboles de búsqueda"
+    int  padre_; //numero de nodo padre.
 
 
     bool estudiado_;
@@ -26,44 +31,68 @@ public:
        NodeIA_t();
        ~NodeIA_t();
        void limpiar();
+    bool operator < (const NodeIA_t &valor) const ; //comprobacion en base al al funcion f(n).
+    bool operator == (const NodeIA_t &valor)const ; //comprobacion en base al id_(numero de nodo de estado)
 
-       template <class U>
-       friend ostream & operator << (ostream & os, NodeIA_t<U> & valor);
+
+       friend ostream & operator << (ostream & os, NodeIA_t & valor);
 
 };
 
-template <class T>
-NodeIA_t<T>::NodeIA_t():
+
+NodeIA_t::NodeIA_t():
     profundidad_(0),
     accion_(""),
-    padre_(NULL),
+    padre_(0),
     estudiado_(false),
-    estado_()
+    estado_(),
+    costoCamino_(0),
+    valorHeuristico_(0),
+    costoCaminoMasHeuristico_(0)
 {
 
 
 }
-template <class T>
-NodeIA_t<T>::~NodeIA_t()
+
+
+NodeIA_t::~NodeIA_t()
 {
     limpiar();
 }
-template <class T>
-void NodeIA_t<T>::limpiar()
+
+void NodeIA_t::limpiar()
 {
-    padre_=NULL;
+    padre_=0;
     LS_.clear();
     profundidad_=0;
-    accion_="";
-    padre_=NULL;
-    estudiado_=false;
+    accion_="";    
+    estudiado_=false;    
+    costoCamino_=0;
+    costoCaminoMasHeuristico_=costoCamino_+valorHeuristico_;
     estado_.limpiar();
 
 
 }
 
-template <class U>
-ostream & operator << (ostream & os, NodeIA_t<U> &valor)
+
+bool NodeIA_t::operator <(const NodeIA_t & valor) const
+{
+    if (this->costoCaminoMasHeuristico_ < valor.costoCaminoMasHeuristico_)
+        return 1;
+    else return 0;
+}
+
+
+bool NodeIA_t::operator ==(const NodeIA_t &valor) const
+{
+    if (this->estado_== valor.estado_)
+        return 1;
+    else return 0;
+}
+
+
+
+ostream & operator << (ostream & os, NodeIA_t &valor)
 {
     os << valor.estado_;
 return os;

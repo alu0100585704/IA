@@ -15,9 +15,10 @@ public:
     ~EstadoIA_t();
 
     void operator= (string valor);
-    void operator=(int valor);
-    void operator= (EstadoIA_t valor);
-
+    void operator= (int valor);
+    void operator= (EstadoIA_t &valor);
+    bool operator  == (const EstadoIA_t &valor)const;
+    bool operator < (const EstadoIA_t &valor) const;
     void limpiar();
 
     friend ostream & operator << (ostream & os,EstadoIA_t & valor);
