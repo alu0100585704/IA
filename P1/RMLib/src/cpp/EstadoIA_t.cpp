@@ -21,18 +21,18 @@ EstadoIA_t::~EstadoIA_t()
 
 }
 
-void EstadoIA_t::operator=(string valor)
+EstadoIA_t& EstadoIA_t::operator=(const string valor)
 {
     this->valor_=valor;
 
 }
 
-void EstadoIA_t::operator=(int valor)
+EstadoIA_t& EstadoIA_t::operator=(const int valor)
 {
     this->id_=valor;
 }
 
-void EstadoIA_t::operator=(EstadoIA_t &valor)
+EstadoIA_t& EstadoIA_t::operator=(const EstadoIA_t &valor)
 {
     this->valor_=valor.valor_;
     this->id_=valor.id_;

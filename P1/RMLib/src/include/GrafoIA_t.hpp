@@ -227,7 +227,7 @@ ostream & GrafoIA_t::mostrarCaminoSolucion(ostream &os)
 
    // while ((objetivo_.padre_!=0) && (solucionEncontrada))
    // {
-        os << " : Nodo : " << objetivo_.padre_;
+        os << " : Nodo : " << objetivo_<< objetivo_.padre_;
    // }
 
 return os;
@@ -252,7 +252,7 @@ void GrafoIA_t::generarSucesores(NodeIA_t &valor)
             nodoNuevo=grafo_[valor.LS_[i].first-1];
             nodoNuevo.costoCamino_=valor.costoCamino_+valor.LS_[i].second;
             nodoNuevo.costoCaminoMasHeuristico_=nodoNuevo.costoCamino_+nodoNuevo.valorHeuristico_;
-            nodoNuevo.padre_=valor.padre_;
+            nodoNuevo.padre_=valor.estado_.id_;
             generados_.insert(nodoNuevo);
 
         }
@@ -281,7 +281,7 @@ bool solucion=false;
                 return false;
 
         itNodo=generados_.begin();
-        aux=itNodo;
+        aux=*itNodo;
         generados_.erase(itNodo); //lo quito de generados.
 
         inspeccionados_.insert(aux);  //lo agrego a inspeccionados.
