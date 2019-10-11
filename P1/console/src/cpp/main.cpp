@@ -42,7 +42,7 @@ void cargar_grafo(void)
 
         cout << "Error,no se ha abierto fichero de grafos : " << nombrefichero << "\n\n Puede hacerlo desde el Menu\n" << endl;
         cout << "Presione ENTER para continuar" << endl;
-        tecla();tecla();
+        tecla();
        }
 
 }
@@ -93,8 +93,7 @@ void menu(void)
     {
         case 'c':
             cargar_grafo();
-            tecla();
-            tecla();
+            tecla();            
 
         break;
     case 'm':
@@ -103,8 +102,7 @@ void menu(void)
         else {
             cout << "Grafo no cargado o vacío" << endl;
         }
-         tecla();
-         tecla();
+         tecla();         
 
     break;
 
@@ -121,16 +119,25 @@ void menu(void)
     break;
     case 'b':
 
-        if (migrafo.aEstrella(1,5))
+        int nodoOrigen,nodoDestino;
+        borrar_pantalla();
+        cout << "\n\nIntroduzca Número de nodo/estado  origen: ";
+        cin.clear();
+        cin >> nodoOrigen;
+
+        cout << "\n\nIntroduzca Número de nodo/estado  destino (deberia coincidir con valor cero en su funcion heuristica): ";
+        cin.clear();
+        cin >> nodoDestino;
+
+        if (migrafo.aEstrella(nodoOrigen,nodoDestino))
           {
-            migrafo.mostrarCaminoSolucion(cout);
-            cout << "hola";
+            migrafo.mostrarCaminoSolucion(cout);            
         }
         else {
             cout << endl<< "Solucion no Encontrada" << endl;
         }
         tecla();
-         tecla();
+        tecla();
 
     break;
 

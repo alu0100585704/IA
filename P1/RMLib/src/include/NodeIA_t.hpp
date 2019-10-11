@@ -31,7 +31,7 @@ public:
        NodeIA_t();
        ~NodeIA_t();
        void limpiar();
-    bool operator < (const NodeIA_t &valor) const ; //comprobacion en base al al funcion f(n).
+    bool operator < (const NodeIA_t &valor) const ; //comprobacion en base al al funcion f(n), o sea, valor atributo costoCaminoMasHeuristico_
     bool operator == (const NodeIA_t &valor)const ; //comprobacion en base al id_(numero de nodo de estado)
 
 
