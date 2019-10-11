@@ -17,7 +17,7 @@ public:
 
     //atributos usados al crear el árbol de búsqueda
 
-    vector<pair<int,double>> LS_; //conjunto de parejas. numero de nodo y costo
+    vector< pair<int,double> > LS_; //conjunto de parejas. numero de nodo y costo
     double  valorHeuristico_;  //h(n) valor heuristico hasta el nodo objetivo.
     double  costoCamino_;  //funcion g(n) //costo real del camino hasta el nodo
     double  costoCaminoMasHeuristico_; //funcion F(n)=g(n) +h(n)

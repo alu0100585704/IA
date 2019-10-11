@@ -15,6 +15,7 @@ class GrafoIA_t {
 private:
 
  vector<NodeIA_t> grafo_;
+ vector<NodeIA_t> caminoSolucion_;
  int numeroNodos_;
 
  set<NodeIA_t> generados_; //aqui uso set para que siempre se ponga el primero el node de menor
@@ -41,6 +42,7 @@ public:
     void generarSucesores(NodeIA_t &valor);
     bool existeNodo(int valor);
     ostream &mostrarCaminoSolucion(ostream &os);
+    crearCaminoSolucion(NodeIA_t &valor);
     friend ostream & operator << (ostream & os, GrafoIA_t &valor);
 
 };
@@ -234,6 +236,17 @@ return os;
 
 }
 
+GrafoIA_t::crearCaminoSolucion(NodeIA_t &valor)
+{
+    NodeIA_t aux;
+
+    caminoSolucion_.clear();
+    caminoSolucion_.push_back(valor);    //introduzco primero nodo objetivo.
+    aux=valor
+    while ()
+
+}
+
 
 void GrafoIA_t::generarSucesores(NodeIA_t &valor)
 {
@@ -289,7 +302,8 @@ bool solucion=false;
 
         if (aux.estado_.id_==nodoDestino)
               {
-               objetivo_=aux;
+                crearCaminoSolucion(aux)   ;
+            //objetivo_=aux;
                solucion=true;
                }
 

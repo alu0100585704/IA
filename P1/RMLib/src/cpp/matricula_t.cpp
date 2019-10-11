@@ -7,7 +7,7 @@
 #include <cstring>
 #include <string.h>
 #include <matricula_t.hpp>
-
+#include <cstdlib>
 using namespace std;
 
 

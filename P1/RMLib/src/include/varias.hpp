@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdlib>
 //
 // Los tamaños de secuencia se daran en su verdadero tamaño, independiente mente de si empiezan desde cero o no, el algoritmo lo adaptara segun sea necesario
 //
