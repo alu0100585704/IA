@@ -263,7 +263,7 @@ set<NodeIA_t>::iterator itNodo;
 
 
 
-os << endl;
+os << endl<<endl;
 return os;
 
 }

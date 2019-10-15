@@ -131,6 +131,12 @@ void menu(void)
         if (migrafo.aEstrella(nodoOrigen,nodoDestino))
           {
             migrafo.mostrarCaminoSolucion(cout);
+            cout << endl << "Volcando resultados a resultado.txt del directorio actual. . ."<< endl;
+            ofstream fichero_resultados;
+            fichero_resultados.open("resuldato.txt",std::ios_base::app);
+            migrafo.mostrarCaminoSolucion(fichero_resultados);
+            fichero_resultados.close();
+            cout << "Terminado";
         }
         else {
             cout << endl<< "Solucion no Encontrada" << endl;
