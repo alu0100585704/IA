@@ -42,7 +42,7 @@ public:
     void generarSucesores(NodeIA_t &valor);
     bool existeNodo(int valor);
     ostream &mostrarCaminoSolucion(ostream &os);
-    crearCaminoSolucion(NodeIA_t &valor);
+    void crearCaminoSolucion(NodeIA_t &valor);
     friend ostream & operator << (ostream & os, GrafoIA_t &valor);
 
 };
@@ -229,7 +229,7 @@ return os;
 
 }
 
-GrafoIA_t::crearCaminoSolucion(NodeIA_t &valor)
+void GrafoIA_t::crearCaminoSolucion(NodeIA_t &valor)
 {
     NodeIA_t aux;
     set<NodeIA_t>::iterator itNodo;
