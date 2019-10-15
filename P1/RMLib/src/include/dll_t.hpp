@@ -61,16 +61,6 @@ namespace RMLIB {
         T  extract_head_valor(double &valor2);
         T  extract_head_valor(char &valor3);
         
-        template<class T>
-        T &dll_t<T>::buscar(int id)
-        {
-            dll_node_t<T>* aux = head_;
-
-            while ((aux != NULL) && (id!=aux->get_set_data().estado_.id_))
-                aux = aux->get_next();
-           return aux->get_set_data();
-        }
-
         T & get_set_tail_valor(void);
         T & get_set_head_valor(void);
 
