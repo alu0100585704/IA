@@ -8,7 +8,6 @@
 #include <cstring>
 #include <varias.hpp>
 
-using namespace RMLIB;
 //funcion prototipo
 void menu(void);
 void cargar_grafo(void);
@@ -131,7 +130,7 @@ void menu(void)
 
         if (migrafo.aEstrella(nodoOrigen,nodoDestino))
           {
-            migrafo.mostrarCaminoSolucion(cout);            
+            migrafo.mostrarCaminoSolucion(cout);
         }
         else {
             cout << endl<< "Solucion no Encontrada" << endl;

@@ -1,9 +1,7 @@
 #pragma once
 #include <utility>
-#include <dll_t.hpp>
 #include <NodeIA_t.hpp>
 #include <EstadoIA_t.hpp>
-#include <dll_node_t.hpp>
 #include <fstream>
 #include <iostream>
 #include <vector>
@@ -17,6 +15,7 @@ private:
  vector<NodeIA_t> grafo_;
  vector<NodeIA_t> caminoSolucion_;
  int numeroNodos_;
+ int nodoOrigen_,nodoDestino_;
 
  set<NodeIA_t> generados_; //aqui uso set para que siempre se ponga el primero el node de menor
                 //f(n)
@@ -25,7 +24,6 @@ private:
  bool solucionEncontrada_;
 
 public:
-
 
 
     GrafoIA_t();
@@ -39,11 +37,14 @@ public:
     void limpiarArbol();
     bool aplicarHeuristica(char nombrefichero[]);
     bool aEstrella(int nodoOrigen, int nodoDestino);
+    ostream &mostrarCaminoSolucion(ostream &os);
+    friend ostream & operator << (ostream & os, GrafoIA_t &valor);
+    string nombreFichero_;
+private:
+
     void generarSucesores(NodeIA_t &valor);
     bool existeNodo(int valor);
-    ostream &mostrarCaminoSolucion(ostream &os);
     void crearCaminoSolucion(NodeIA_t &valor);
-    friend ostream & operator << (ostream & os, GrafoIA_t &valor);
 
 };
 
@@ -68,7 +69,7 @@ GrafoIA_t::~GrafoIA_t()
 }
 
 
-//muestra el grafo como un árbol.
+//muestra el grafo (no el arbol de busqueda ) indicando los hijos de cada nodo.
 
 ostream & operator << (ostream & os, GrafoIA_t & valor)
 {
@@ -100,6 +101,8 @@ bool GrafoIA_t::actualizar(char nombrefichero[])
 
     limpiar(); //por si acaso ya se hab�a abierto alg�n fichero, libero las posibles bloques de memoria reservados.
 
+    nombreFichero_=&nombrefichero[0];
+
      fichero_grafo.open(nombrefichero);
 
     if (fichero_grafo.is_open())
@@ -124,8 +127,7 @@ bool GrafoIA_t::actualizar(char nombrefichero[])
                 if (temp!=-1) //si es igual a -1, valor escogido para infinito, o sea, inalcanzable.
                 {
                     sucesor.first=i+j+1; //numero de nodo sucesor
-                    sucesor.second=temp; //costo para llegar a ese nodo
-                    //sucesor.second=NULL; //inicialmente el puntero hacia el sucesor es  nulo, este valor lo modifica solo el arbol de búsqueda.
+                    sucesor.second=temp; //costo para llegar a ese nodo                    
                     grafo_[i-1].LS_.push_back(sucesor);
 
                     sucesor.first=i;     //indico al sucesor que este nodo es predecesor
@@ -215,16 +217,53 @@ bool GrafoIA_t::existeNodo(int valor)
     return encontrado;
 }
 
-
+//
+// Muestro tabla con informacion sobre la busqueda.
+//
 ostream & GrafoIA_t::mostrarCaminoSolucion(ostream &os)
 {
+set<NodeIA_t>::iterator itNodo;
 
-    ///Aqui tengo que recorrer el vector caminoSolucion_ desde el final hacia el principio.
+           os << "Instancia                      : " << nombreFichero_ << endl;
+           os << "Numero de nodos                : " << numeroNodos_ << endl;
+           os << "Numero de nodos en la solucion : " << caminoSolucion_.size()<< endl;
+           os << "Nodo Origen                    : " << nodoOrigen_ << endl;
+           os << "Nodo Destino                   : " << nodoDestino_ << endl;
+           os << endl <<  "FORMATO : Nodo(coste camino)(valor heuristico) : " << endl << endl;
+           os << "Nodos Generados                : " ;
+           //
+           // Muestro los nodos generados
+           //
+           for (itNodo=generados_.begin();itNodo!= generados_.end(); itNodo++)
+               //os << itNodo->estado_.id_ << ",";
+               os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ") - ";
 
-    for (int i=caminoSolucion_.size(); i >0;i--)
-        os <<  "Nodo => " << caminoSolucion_[i-1].estado_ << " - Coste g(n)=> " << caminoSolucion_[i-1].costoCamino_ << " - Valor Heuristico => " << caminoSolucion_[i-1].valorHeuristico_ << endl;
+           os << endl;
+           os << "Nodos Inspeccionados           : ";
+           //
+           // Muestro los nodos inespeccionados
+           //
+           for (itNodo=inspeccionados_.begin();itNodo!= inspeccionados_.end(); itNodo++)
+               //os << itNodo->estado_.id_ << ",";
+               os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ") - ";
+
+            os << endl;
+
+            os << "Camino Solucion                : " ;
+            //Muestro Camino solucion con su distancia.
+            ///Aqui tengo que recorrer el vector caminoSolucion_ desde el final hacia el principio.
+            for (int i=caminoSolucion_.size(); i >0;i--)
+                //os <<  "Nodo => " << caminoSolucion_[i-1].estado_ << " - Coste g(n)=> " << caminoSolucion_[i-1].costoCamino_ << " - Valor Heuristico => " << caminoSolucion_[i-1].valorHeuristico_ << endl;
+                os <<  caminoSolucion_[i-1].estado_ << "(" << caminoSolucion_[i-1].costoCamino_  << ")" << "(" << caminoSolucion_[i-1].valorHeuristico_ << ") - ";
+
+//
+// Muestro nombre de grafo, numero de nodos, tamaño de la solucion, nodo origen, nodo destino.
+//
+    //os << nombreFichero_ << " | " << numeroNodos_ << " | " << caminoSolucion_.size() << " | " << nodoOrigen_ << " | " << nodoDestino_ << " | ";
 
 
+
+os << endl;
 return os;
 
 }
@@ -253,7 +292,7 @@ void GrafoIA_t::crearCaminoSolucion(NodeIA_t &valor)
                 {
                        encontrado=true;
                        aux=*itNodo;
-                       inspeccionados_.erase(itNodo); //borro este nodo de la lista.
+                       //inspeccionados_.erase(itNodo); //borro este nodo de la lista.
                 }
 
                 else
@@ -271,7 +310,7 @@ void GrafoIA_t::crearCaminoSolucion(NodeIA_t &valor)
 
     }
 
-    inspeccionados_.clear(); //lebero ya  toda la memoria del set que no voy a utilizar.
+    //inspeccionados_.clear(); //lebero ya  toda la memoria del set que no voy a utilizar.
 
 
 }
@@ -312,6 +351,10 @@ bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino)
 
        limpiarArbol();
 
+    //actualizo los valores origen y destino para visualizacion posterior.
+
+       nodoOrigen_=nodoOrigen;
+    nodoDestino_=nodoDestino;
 
          aux=grafo_[nodoOrigen-1]; //nodo raiz
          aux.padre_=0; //este cero indica que es el nodo raiz, para cuando haya que volver sobre sus pasos para mostrar el camino obtenido
@@ -333,7 +376,7 @@ bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino)
               {
                 solucionEncontrada_=true;
                 crearCaminoSolucion(aux);
-                generados_.clear(); //libero esta memoria, pusto que el trazo es ya solo con nodos que estarán en inspeccionados.
+                //generados_.clear(); //libero esta memoria, pusto que el trazo es ya solo con nodos que estarán en inspeccionados.
 
                }
 
@@ -361,4 +404,6 @@ void GrafoIA_t::limpiarArbol()
     inspeccionados_.clear();
     caminoSolucion_.clear();
     solucionEncontrada_=false;
+    nodoDestino_=0;
+    nodoOrigen_=0;
 }
