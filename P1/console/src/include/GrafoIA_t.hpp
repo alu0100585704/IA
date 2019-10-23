@@ -39,7 +39,7 @@ public:
     bool aEstrella(int nodoOrigen, int nodoDestino);
     ostream &mostrarCaminoSolucion(ostream &os);
     friend ostream & operator << (ostream & os, GrafoIA_t &valor);
-    string nombreFichero_;
+    string nombreFichero_,nombreFicheroHeuristica_;
 private:
 
     void generarSucesores(NodeIA_t &valor);
@@ -182,6 +182,7 @@ bool  GrafoIA_t::aplicarHeuristica(char nombrefichero[])
 
 
             fichero_grafo.close();
+              nombreFicheroHeuristica_=&nombrefichero[0];
            return true;
 
        }
@@ -224,19 +225,24 @@ ostream & GrafoIA_t::mostrarCaminoSolucion(ostream &os)
 {
 set<NodeIA_t>::iterator itNodo;
 
-           os << "Instancia                      : " << nombreFichero_ << endl;
+           os << endl << "------------------------------------------------------------" << endl;
+           os << "Grafo                          : " << nombreFichero_ << endl;
+           os << "Heuristica Aplicada            : " << nombreFicheroHeuristica_ << endl;
            os << "Numero de nodos                : " << numeroNodos_ << endl;
            os << "Numero de nodos en la solucion : " << caminoSolucion_.size()<< endl;
            os << "Nodo Origen                    : " << nodoOrigen_ << endl;
            os << "Nodo Destino                   : " << nodoDestino_ << endl;
-           os << endl <<  "FORMATO : Nodo(coste camino)(valor heuristico) : " << endl << endl;
-           os << "Nodos Generados                : " ;
+           os << "Cantidad Nodos Generados Total : " << generados_.size()+inspeccionados_.size()<< endl;
+           os << "Cantidad Nodos Inspeccionados  : " << inspeccionados_.size()<< endl;
+
+           os << endl <<  "FORMATO : Nodo=g(n)h(n)f(n) : " << endl << endl;
+           os << "Generados Sin Inspeccionar     : " ;
            //
            // Muestro los nodos generados
            //
            for (itNodo=generados_.begin();itNodo!= generados_.end(); itNodo++)
                //os << itNodo->estado_.id_ << ",";
-               os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ") - ";
+               os << itNodo->estado_.id_ << "=(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ")"<<"("<< itNodo->costoCaminoMasHeuristico_<< ")- ";
 
            os << endl;
            os << "Nodos Inspeccionados           : ";
@@ -245,7 +251,7 @@ set<NodeIA_t>::iterator itNodo;
            //
            for (itNodo=inspeccionados_.begin();itNodo!= inspeccionados_.end(); itNodo++)
                //os << itNodo->estado_.id_ << ",";
-               os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ") - ";
+               os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ")"<<"("<< itNodo->costoCaminoMasHeuristico_<< ")- ";
 
             os << endl;
 
@@ -254,7 +260,7 @@ set<NodeIA_t>::iterator itNodo;
             ///Aqui tengo que recorrer el vector caminoSolucion_ desde el final hacia el principio.
             for (int i=caminoSolucion_.size(); i >0;i--)
                 //os <<  "Nodo => " << caminoSolucion_[i-1].estado_ << " - Coste g(n)=> " << caminoSolucion_[i-1].costoCamino_ << " - Valor Heuristico => " << caminoSolucion_[i-1].valorHeuristico_ << endl;
-                os <<  caminoSolucion_[i-1].estado_ << "(" << caminoSolucion_[i-1].costoCamino_  << ")" << "(" << caminoSolucion_[i-1].valorHeuristico_ << ") - ";
+                os <<  caminoSolucion_[i-1].estado_ << "(" << caminoSolucion_[i-1].costoCamino_  << ") - ";
 
 //
 // Muestro nombre de grafo, numero de nodos, tamaño de la solucion, nodo origen, nodo destino.
@@ -367,7 +373,7 @@ bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino)
 
         itNodo=generados_.begin();
         aux=*itNodo;
-        generados_.erase(itNodo); //lo quito de generados.
+        generados_.erase(itNodo); //lo quito de generados para ahorrar memoria,
 
         inspeccionados_.insert(aux);  //lo agrego a inspeccionados.
 

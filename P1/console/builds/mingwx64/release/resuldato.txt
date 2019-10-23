@@ -15,3 +15,139 @@ Nodos Generados                : 9(47)(9) -
 Nodos Inspeccionados           : 1(0)(1) - 2(9)(8) - 3(10)(8) - 4(19)(6) - 11(19)(8) - 5(22)(9) - 15(28)(8) - 6(36)(7) - 
 Camino Solucion                : 1(0)(1) - 2(9)(8) - 4(19)(6) - 15(28)(8) - 6(36)(7) - 8(43)(0) - 
 
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h1.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 10
+Cantidad Nodos Inspeccionados  : 9
+
+FORMATO : Nodo(coste camino)(valor heuristico) : 
+
+Generados Sin Inspeccionar     : 6(36)(7) - 
+Nodos Inspeccionados           : 1(0)(1) - 2(9)(8.25) - 3(10)(8.54) - 4(19)(6.32) - 11(19)(8.94) - 5(22)(11.4) - 15(28)(9.43) - 12(27)(10.82) - 8(38)(0) - 
+Camino Solucion                : 1(0)(1) - 2(9)(8.25) - 4(19)(6.32) - 5(22)(11.4) - 12(27)(10.82) - 8(38)(0) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h1.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 10
+Cantidad Nodos Inspeccionados  : 9
+
+FORMATO : Nodo(coste camino)(valor heuristico) : 
+
+Generados Sin Inspeccionar     : 6(36)(7) - 
+Nodos Inspeccionados           : 1(0)(1) - 2(9)(8.25) - 3(10)(8.54) - 4(19)(6.32) - 11(19)(8.94) - 5(22)(11.4) - 15(28)(9.43) - 12(27)(10.82) - 8(38)(0) - 
+Camino Solucion                : 1(0)(1) - 2(9)(8.25) - 4(19)(6.32) - 5(22)(11.4) - 12(27)(10.82) - 8(38)(0) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h1.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 10
+Cantidad Nodos Inspeccionados  : 9
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 6=(36)(7)(43)- 
+Nodos Inspeccionados           : 1(0)(1)(0)- 2(9)(8.25)(17.25)- 3(10)(8.54)(18.54)- 4(19)(6.32)(25.32)- 11(19)(8.94)(27.94)- 5(22)(11.4)(33.4)- 15(28)(9.43)(37.43)- 12(27)(10.82)(37.82)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0)(1) - 2(9)(8.25) - 4(19)(6.32) - 5(22)(11.4) - 12(27)(10.82) - 8(38)(0) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h1.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 10
+Cantidad Nodos Inspeccionados  : 9
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 6=(36)(7)(43)- 
+Nodos Inspeccionados           : 1(0)(1)(0)- 2(9)(8.25)(17.25)- 3(10)(8.54)(18.54)- 4(19)(6.32)(25.32)- 11(19)(8.94)(27.94)- 5(22)(11.4)(33.4)- 15(28)(9.43)(37.43)- 12(27)(10.82)(37.82)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h2.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 9
+Cantidad Nodos Inspeccionados  : 8
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 9=(47)(9)(56)- 
+Nodos Inspeccionados           : 1(0)(1)(0)- 2(9)(8)(17)- 3(10)(8)(18)- 4(19)(6)(25)- 11(19)(8)(27)- 5(22)(9)(31)- 15(28)(8)(36)- 6(36)(7)(43)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 15(28) - 6(36) - 8(43) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h2.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 11
+Cantidad Nodos Inspeccionados  : 10
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 9=(47)(0)(47)- 
+Nodos Inspeccionados           : 1(0)(0)(0)- 2(9)(0)(9)- 3(10)(0)(10)- 4(19)(0)(19)- 5(22)(0)(22)- 11(26)(0)(26)- 12(27)(0)(27)- 15(28)(0)(28)- 6(36)(0)(36)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : 
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 11
+Cantidad Nodos Inspeccionados  : 10
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 9=(47)(0)(47)- 
+Nodos Inspeccionados           : 1(0)(0)(0)- 2(9)(0)(9)- 3(10)(0)(10)- 4(19)(0)(19)- 5(22)(0)(22)- 11(26)(0)(26)- 12(27)(0)(27)- 15(28)(0)(28)- 6(36)(0)(36)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : grafo1h3.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 9
+Cantidad Nodos Inspeccionados  : 8
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 15=(28)(9.43)(37.43)- 
+Nodos Inspeccionados           : 1(0)(1)(0)- 2(9)(8.25)(17.25)- 3(10)(8.54)(18.54)- 11(19)(6.31)(25.31)- 4(19)(6.32)(25.32)- 5(20)(11.4)(31.4)- 12(25)(10.82)(35.82)- 8(36)(0)(36)- 
+Camino Solucion                : 1(0) - 3(10) - 11(19) - 5(20) - 12(25) - 8(36) - 
+
