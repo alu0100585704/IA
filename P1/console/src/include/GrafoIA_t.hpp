@@ -43,7 +43,8 @@ public:
 private:
 
     void generarSucesores(NodeIA_t &valor);
-    bool existeNodo(int valor);
+    bool existeNodo(int valor);  //este método devuelve false si no encuentra un nodo en concreto por us ID ni en lista de generados ni en lista de inspeccionados.
+    bool existeNodoEnSuCaminio(int valor);  //este método devuelve false si no encuentra el ID de un nodo solo buscando hacia atrás, o sea, solo comprueba su camino desde el inicial hasta el
     void crearCaminoSolucion(NodeIA_t &valor);
 
 };
@@ -190,6 +191,32 @@ bool  GrafoIA_t::aplicarHeuristica(char nombrefichero[])
 }
 
 
+bool GrafoIA_t::existeNodoEnSuCaminio(int valor)
+{
+   set<NodeIA_t>::iterator itNodo;
+    bool encontrado=false;
+    itNodo=generados_.begin();
+
+    //busco nodo en generados
+    while ((itNodo!=generados_.end()) && (encontrado==false))
+          {
+                if (itNodo->estado_.id_==valor)
+                        encontrado=true;
+                itNodo++;
+           }
+
+    itNodo=inspeccionados_.begin();
+
+    //busco nodo en inspeccionados
+    while ((itNodo!=inspeccionados_.end()) && (encontrado==false))
+    {
+            if (itNodo->estado_.id_==valor)
+                encontrado=true;
+          itNodo++;
+    }
+
+    return encontrado;
+}
 
 bool GrafoIA_t::existeNodo(int valor)
 {
@@ -340,6 +367,7 @@ void GrafoIA_t::generarSucesores(NodeIA_t &valor)
             nodoNuevo.costoCamino_=valor.costoCamino_+valor.LS_[i].second;
             nodoNuevo.costoCaminoMasHeuristico_=nodoNuevo.costoCamino_+nodoNuevo.valorHeuristico_;
             nodoNuevo.padre_=valor.estado_.id_;
+            //nodoNuevo.padrePuntero_=
             generados_.insert(nodoNuevo);
 
         }

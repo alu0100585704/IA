@@ -23,7 +23,7 @@ public:
     int profundidad_;
     string accion_;
     int  padre_; //numero de nodo padre.
-
+    NodeIA_t * padrePuntero_;
 
     bool estudiado_;
 
