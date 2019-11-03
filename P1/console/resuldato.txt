@@ -1,0 +1,168 @@
+
+------------------------------------------------------------
+Grafo                          : grafo/grafo1_1_8.txt
+Heuristica Aplicada            : 
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 11
+Cantidad Nodos Inspeccionados  : 10
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 596=(6.95313e-310)(9.26841e-315)(9.26841e-315)- 
+Nodos Inspeccionados           : 1(0)(0)(0)- 2(9)(0)(9)- 3(10)(0)(10)- 4(19)(0)(19)- 5(22)(0)(22)- 11(26)(0)(26)- 12(27)(0)(27)- 15(28)(0)(28)- 6(36)(0)(36)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/grafo1_1_8.txt
+Heuristica Aplicada            : 
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 11
+Cantidad Nodos Inspeccionados  : 10
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 9,9=(47)(0)(47)- 6=(9.26718e-315)(9.26841e-315)(9.26841e-315)- 
+Nodos Inspeccionados           : 1(0)(0)(0)- 2(9)(0)(9)- 3(10)(0)(10)- 4(19)(0)(19)- 5(22)(0)(22)- 11(26)(0)(26)- 12(27)(0)(27)- 15(28)(0)(28)- 6(36)(0)(36)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/grafo1_1_8.txt
+Heuristica Aplicada            : 
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados       : 29
+Cantidad Nodos Inspeccionados  : 19
+
+
+
+------------------------------------------------------------
+Grafo                          : grafo/grafo1_1_8.txt
+Heuristica Aplicada            : 
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados       : 29
+Cantidad Nodos Inspeccionados  : 19
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/ciudades.txt
+Heuristica Aplicada            : grafo/ciudadesHeuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados       : 29
+Cantidad Nodos Inspeccionados  : 18
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 3(118) - 5(229) - 7(299) - 8(374) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/ciudades.txt
+Heuristica Aplicada            : grafo/ciudadesHeuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados       : 20
+Cantidad Nodos Inspeccionados  : 15
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 3(118) - 5(229) - 7(299) - 8(374) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/ciudades.txt
+Heuristica Aplicada            : grafo/ciudadesheuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados       : 29
+Cantidad Nodos Inspeccionados  : 18
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 3(118) - 5(229) - 7(299) - 8(374) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/ciudades.txt
+Heuristica Aplicada            : grafo/ciudadesheuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 14
+Cantidad Nodos Generados       : 39
+Cantidad Nodos Inspeccionados  : 24
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 6(140) - 10(220) - 12(317) - 14(418) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/grafo1_1_8.txt
+Heuristica Aplicada            : grafo/grafo1h1.txt
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados       : 34
+Cantidad Nodos Inspeccionados  : 17
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 3(10) - 11(19) - 5(20) - 12(25) - 8(36) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/grafo3_1_15.txt
+Heuristica Aplicada            : grafo/grafo3h1.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 8
+Nodo Origen                    : 1
+Nodo Destino                   : 15
+Cantidad Nodos Generados       : 46
+Cantidad Nodos Inspeccionados  : 35
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : Camino Solucion                : 1(0) - 5(15) - 3(22) - 6(34) - 9(41) - 13(46) - 14(52) - 15(60) - 
+
+
+------------------------------------------------------------
+Grafo                          : grafo/ciudades.txt
+Heuristica Aplicada            : grafo/ciudadesheuristica.txt
+Numero de nodos                : 20
+Nodo Origen                    : 1
+Nodo Destino                   : 14
+Numero de nodos en la solucion : 5
+Cantidad Nodos Generados       : 12
+Cantidad Nodos Inspeccionados  : 6
+Cantidad Nodos Sin Inspeccionar: 6
+Camino Solucion                : 1(0) - 6(140) - 10(220) - 12(317) - 14(418) - 
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 3(118)(329)(447)- 2(75)(374)(449)- 14(450)(0)(450)- 9(366)(160)(526)- 9(455)(160)(615)- 4(291)(380)(671)- 
+Nodos Inspeccionados           : 1(0)(366)(0)- 6(140)(253)(393)- 10(220)(193)(413)- 12(317)(98)(415)- 11(239)(178)(417)- 14(418)(0)(418)- 
+
