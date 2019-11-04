@@ -20,12 +20,12 @@ public:
     double  valorHeuristico_;  //h(n) valor heuristico hasta el nodo objetivo.
     double  costoCamino_;  //funcion g(n) //costo real del camino hasta el nodo
     double  costoCaminoMasHeuristico_; //funcion F(n)=g(n) +h(n)
-    int profundidad_;
+    int profundidad_;    
     string accion_;
-    int  padre_; //numero de nodo padre.
-    NodeIA_t * padrePuntero_;
 
-    bool estudiado_;
+    const NodeIA_t * padrePuntero_;
+    mutable  bool estudiado_;
+
 
        NodeIA_t();
        ~NodeIA_t();
@@ -33,23 +33,27 @@ public:
     bool operator < (const NodeIA_t &valor) const ; //comprobacion en base al al funcion f(n), o sea, valor atributo costoCaminoMasHeuristico_
     bool operator == (const NodeIA_t &valor)const ; //comprobacion en base al id_(numero de nodo de estado)
 
+    const NodeIA_t * current() const; //devuelve un puntero hacia este objeto
 
        friend ostream & operator << (ostream & os, NodeIA_t & valor);
 
 };
 
+const NodeIA_t * NodeIA_t::current() const
+{
+    return this;
+}
+
 
 NodeIA_t::NodeIA_t():
     profundidad_(0),
-    accion_(""),
-    padre_(0),
+    accion_(""),    
     estudiado_(false),
     estado_(),
     costoCamino_(0),
     valorHeuristico_(0),
     costoCaminoMasHeuristico_(0)
 {
-
 
 }
 
@@ -60,8 +64,7 @@ NodeIA_t::~NodeIA_t()
 }
 
 void NodeIA_t::limpiar()
-{
-    padre_=0;
+{    
     LS_.clear();
     profundidad_=0;
     accion_="";    
@@ -69,7 +72,6 @@ void NodeIA_t::limpiar()
     costoCamino_=0;
     costoCaminoMasHeuristico_=costoCamino_+valorHeuristico_;
     estado_.limpiar();
-
 
 }
 

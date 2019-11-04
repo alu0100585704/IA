@@ -151,3 +151,88 @@ Generados Sin Inspeccionar     : 15=(28)(9.43)(37.43)-
 Nodos Inspeccionados           : 1(0)(1)(0)- 2(9)(8.25)(17.25)- 3(10)(8.54)(18.54)- 11(19)(6.31)(25.31)- 4(19)(6.32)(25.32)- 5(20)(11.4)(31.4)- 12(25)(10.82)(35.82)- 8(36)(0)(36)- 
 Camino Solucion                : 1(0) - 3(10) - 11(19) - 5(20) - 12(25) - 8(36) - 
 
+
+------------------------------------------------------------
+Grafo                          : grafo1_1_8.txt
+Heuristica Aplicada            : 
+Numero de nodos                : 15
+Numero de nodos en la solucion : 6
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 11
+Cantidad Nodos Inspeccionados  : 10
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 9=(47)(0)(47)- 
+Nodos Inspeccionados           : 1(0)(0)(0)- 2(9)(0)(9)- 3(10)(0)(10)- 4(19)(0)(19)- 5(22)(0)(22)- 11(26)(0)(26)- 12(27)(0)(27)- 15(28)(0)(28)- 6(36)(0)(36)- 8(38)(0)(38)- 
+Camino Solucion                : 1(0) - 2(9) - 4(19) - 5(22) - 12(27) - 8(38) - 
+
+
+------------------------------------------------------------
+Grafo                          : ciudades.txt
+Heuristica Aplicada            : ciudadesHeuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 17
+Cantidad Nodos Inspeccionados  : 15
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 16=(601)(151)(752)- 18=(645)(199)(844)- 
+Nodos Inspeccionados           : 1(0)(366)(0)- 6(140)(253)(393)- 10(220)(193)(413)- 12(317)(98)(415)- 11(239)(178)(417)- 14(418)(0)(418)- 3(118)(329)(447)- 2(75)(374)(449)- 5(229)(244)(473)- 9(366)(160)(526)- 7(299)(241)(540)- 15(503)(80)(583)- 13(508)(77)(585)- 4(291)(380)(671)- 8(486)(242)(728)- 
+Camino Solucion                : 1(0) - 6(140) - 10(220) - 9(366) - 8(486) - 
+
+
+------------------------------------------------------------
+Grafo                          : ciudades.txt
+Heuristica Aplicada            : ciudadesHeuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 13
+Cantidad Nodos Inspeccionados  : 12
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 14=(450)(0)(450)- 
+Nodos Inspeccionados           : 1(0)(0)(0)- 2(75)(0)(75)- 3(118)(0)(118)- 6(140)(0)(140)- 4(146)(0)(146)- 10(220)(0)(220)- 5(229)(0)(229)- 11(239)(0)(239)- 7(299)(0)(299)- 12(317)(0)(317)- 9(366)(0)(366)- 8(374)(0)(374)- 
+Camino Solucion                : 1(0) - 3(118) - 5(229) - 7(299) - 8(374) - 
+
+
+------------------------------------------------------------
+Grafo                          : ciudades.txt
+Heuristica Aplicada            : ciudadesheuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 8
+Cantidad Nodos Generados Total : 17
+Cantidad Nodos Inspeccionados  : 15
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 16=(601)(151)(752)- 18=(645)(199)(844)- 
+Nodos Inspeccionados           : 1(0)(366)(0)- 6(140)(253)(393)- 10(220)(193)(413)- 12(317)(98)(415)- 11(239)(178)(417)- 14(418)(0)(418)- 3(118)(329)(447)- 2(75)(374)(449)- 5(229)(244)(473)- 9(366)(160)(526)- 7(299)(241)(540)- 15(503)(80)(583)- 13(508)(77)(585)- 4(291)(380)(671)- 8(486)(242)(728)- 
+Camino Solucion                : 1(0) - 6(140) - 10(220) - 9(366) - 8(486) - 
+
+
+------------------------------------------------------------
+Grafo                          : ciudades.txt
+Heuristica Aplicada            : ciudadesheuristica.txt
+Numero de nodos                : 20
+Numero de nodos en la solucion : 5
+Nodo Origen                    : 1
+Nodo Destino                   : 14
+Cantidad Nodos Generados Total : 10
+Cantidad Nodos Inspeccionados  : 6
+
+FORMATO : Nodo=g(n)h(n)f(n) : 
+
+Generados Sin Inspeccionar     : 3=(118)(329)(447)- 2=(75)(374)(449)- 9=(366)(160)(526)- 4=(291)(380)(671)- 
+Nodos Inspeccionados           : 1(0)(366)(0)- 6(140)(253)(393)- 10(220)(193)(413)- 12(317)(98)(415)- 11(239)(178)(417)- 14(418)(0)(418)- 
+Camino Solucion                : 1(0) - 6(140) - 10(220) - 12(317) - 14(418) - 
+
