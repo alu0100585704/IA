@@ -9,10 +9,6 @@ class NodeIA_t {
 public:
 
     EstadoIA_t  estado_;
-    //vector<pair<pair<int,double>,NodeIA_t<T>*>> LS_; //conjunto de parejas.
-     //pareja.first = pareja de numero de nodos y costo del nodo
-    //pareja.second = puntero hacia nodo NodeIA_t<T> *, contendrá NULL en el grafo y
-    //posición hacia un  nodo en memoria durante el arbol de busqueda IA.
 
     //atributos usados al crear el árbol de búsqueda
 
@@ -23,7 +19,8 @@ public:
     int profundidad_;    
     string accion_;
 
-    const NodeIA_t * padrePuntero_;
+    const NodeIA_t * padrePuntero_; //usado por la version 1 del algoritmo
+    int  padre_; //numero de nodo padre, solo usado por la version 2 del algoritmo
     mutable  bool estudiado_;
 
 
@@ -48,6 +45,7 @@ const NodeIA_t * NodeIA_t::current() const
 NodeIA_t::NodeIA_t():
     profundidad_(0),
     accion_(""),    
+    padre_(0),
     estudiado_(false),
     estado_(),
     costoCamino_(0),

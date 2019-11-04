@@ -16,10 +16,32 @@ private:
  vector<NodeIA_t> caminoSolucion_;
  int numeroNodos_;
  int nodoOrigen_,nodoDestino_;
+ bool solucionEncontrada_;
+ bool version1_; //será true si se usa la version 1(default) o false si se usa la version 2
+
+
+ //VERSION 1
+
+ // atributos para version 1 de un conjunto de datos, en el que se agregan  los nodos y se
+ //marcan como estudiados no o estudiados. Estos nodos tienen punteros a sus nodos padres
+ //para trazar el camino solución y conocer antes de generar un nuevo nodo hijo, si en su
+ //camino ese nodo ya existe. Esta implementación permite tener en el conjunto el mismo nodo
+ //repetido,puesto que se puede encontrar el mismo nodo en caminos diferents.
  int nodosGenerados_,nodosInspeccionados_;
  set<NodeIA_t> nodos_;
 
- bool solucionEncontrada_;
+
+ //VERSION 2
+
+ //atributos para version 2 que consiste en dos conjuntos de datos, uno para nodos generados
+ //y otro para nodos inspeccionados. No se puede repetir ningún nodo, puesto que antes de generarlo
+ //se comprueba que no exista ya en ninguno de los conjuntos. Por lo tanto puede perder opciones
+ //de otros caminos mejores, sobre todo en caso de que la función heurística sea mala, pero es
+ //muy rápido y consume menos memoria. Puede fallar al no siempre obtener el camino óptimo.
+
+ set<NodeIA_t> generados_; //aqui uso set para que siempre se ponga el primero el node de menor
+                //f(n)
+ set<NodeIA_t> inspeccionados_;
 
 public:
 
@@ -34,15 +56,18 @@ public:
     void limpiar();    
     void limpiarArbol();
     bool aplicarHeuristica(char nombrefichero[]);
-    bool aEstrella(int nodoOrigen, int nodoDestino);
+    bool aEstrella(int nodoOrigen, int nodoDestino,bool version1);
     ostream &mostrarCaminoSolucion(ostream &os);
     friend ostream & operator << (ostream & os, GrafoIA_t &valor);
     string nombreFichero_,nombreFicheroHeuristica_;
 private:
 
-    void generarSucesores(set<NodeIA_t>::iterator &valor);
-    bool existeNodo(set<NodeIA_t>::iterator &valor,int sucesor);  //este método devuelve false si no encuentra un nodo en concreto por us ID ni en lista de generados ni en lista de inspeccionados.
-    void crearCaminoSolucion(set<NodeIA_t>::iterator &valor);
+    void generarSucesores(set<NodeIA_t>::iterator &valor); //para version 1
+    void generarSucesores(NodeIA_t &valor); //para version 2
+    bool existeNodo(set<NodeIA_t>::iterator &valor,int sucesor);  //para version 1. este método devuelve false si no encuentra un nodo en concreto por us ID ni en lista de generados ni en lista de inspeccionados.
+    bool existeNodo(int valor); //para version 2
+    void crearCaminoSolucion(set<NodeIA_t>::iterator &valor); //para version 1
+    void crearCaminoSolucion(NodeIA_t &valor); //para version 2
 
 };
 
@@ -51,6 +76,7 @@ private:
 GrafoIA_t::GrafoIA_t():
     numeroNodos_(0),
     solucionEncontrada_(false),
+    version1_(true),
     nodosGenerados_(0),
     nodosInspeccionados_(0)
 {
@@ -194,9 +220,11 @@ bool  GrafoIA_t::aplicarHeuristica(char nombrefichero[])
 ostream & GrafoIA_t::mostrarCaminoSolucion(ostream &os)
 {
 set<NodeIA_t>::iterator itNodo;
-NodeIA_t * aux;
 
+ if (version1_)
+ {
            os << endl << "------------------------------------------------------------" << endl;
+           os << "Version 1 del algoritmo(Recomendado): Un solo Conjunto"<< endl;
            os << "Grafo                          : " << nombreFichero_ << endl;
            os << "Heuristica Aplicada            : " << nombreFicheroHeuristica_ << endl;
            os << "Numero de nodos                : " << numeroNodos_ << endl;
@@ -207,7 +235,7 @@ NodeIA_t * aux;
            os << "Cantidad Nodos Generados       : " << nodosGenerados_<< endl;
            os << "Cantidad Nodos Inspeccionados  : " << nodosInspeccionados_<< endl;
            os << "Cantidad Nodos Sin Inspeccionar: " << nodosGenerados_-nodosInspeccionados_<< endl;
-           os << "Camino Solucion                : " ;
+           os << "Camino Solucion  Nodo(g(n))    : " ;
            //Muestro Camino solucion con su distancia.
            ///Aqui tengo que recorrer el vector caminoSolucion_ desde el final hacia el principio.
            for (int i=caminoSolucion_.size(); i >0;i--)
@@ -215,7 +243,7 @@ NodeIA_t * aux;
                os <<  caminoSolucion_[i-1].estado_ << "(" << caminoSolucion_[i-1].costoCamino_  << ") - ";
 
 
-           os << endl <<  "FORMATO : Nodo=g(n)h(n)f(n) : " << endl << endl;
+           os << endl << endl << endl <<  "- - -  FORMATO : Nodo=g(n)h(n)f(n) - - -" << endl << endl;
            os << "Generados Sin Inspeccionar     : " ;
            //
            // Muestro los nodos generados
@@ -225,7 +253,7 @@ NodeIA_t * aux;
                     os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ")"<<"("<< itNodo->costoCaminoMasHeuristico_<< ")- ";
 
 
-           os << endl;
+           os << endl<< endl;
            os << "Nodos Inspeccionados           : ";
            //
            // Muestro los nodos inespeccionados
@@ -233,14 +261,60 @@ NodeIA_t * aux;
            for (itNodo=nodos_.begin();itNodo!= nodos_.end(); itNodo++)
                if (itNodo->estudiado_)
                     os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ")"<<"("<< itNodo->costoCaminoMasHeuristico_<< ")- ";
+ }
+ else {
+     os << endl << "------------------------------------------------------------" << endl;
+     os << "Version 2 del algoritmo: Dos conjuntos, no se repiten nodos"<< endl;
+     os << "Grafo                          : " << nombreFichero_ << endl;
+     os << "Heuristica Aplicada            : " << nombreFicheroHeuristica_ << endl;
+     os << "Numero de nodos                : " << numeroNodos_ << endl;
+     os << "Nodo Origen                    : " << nodoOrigen_ << endl;
+     os << "Nodo Destino                   : " << nodoDestino_ << endl;
+     os << "Numero de nodos en la solucion : " << caminoSolucion_.size()<< endl;
+     os << "Cantidad Nodos Generados       : " << generados_.size()+inspeccionados_.size()<< endl;
+     os << "Cantidad Nodos Inspeccionados  : " << inspeccionados_.size()<< endl;
+     os << "Cantidad Nodos Sin Inspeccionar: " << generados_.size()<< endl;
+     os << "Camino Solucion  Nodo(g(n))    : " ;
+     //Muestro Camino solucion con su distancia.
+     ///Aqui tengo que recorrer el vector caminoSolucion_ desde el final hacia el principio.
+     for (int i=caminoSolucion_.size(); i >0;i--)
+         //os <<  "Nodo => " << caminoSolucion_[i-1].estado_ << " - Coste g(n)=> " << caminoSolucion_[i-1].costoCamino_ << " - Valor Heuristico => " << caminoSolucion_[i-1].valorHeuristico_ << endl;
+         os <<  caminoSolucion_[i-1].estado_ << "(" << caminoSolucion_[i-1].costoCamino_  << ") - ";
+
+     os << endl <<endl << endl <<  "FORMATO : Nodo=g(n)h(n)f(n) : " << endl << endl;
+     os << "Generados Sin Inspeccionar     : " ;
+     //
+     // Muestro los nodos generados
+     //
+     for (itNodo=generados_.begin();itNodo!= generados_.end(); itNodo++)
+         //os << itNodo->estado_.id_ << ",";
+         os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ")"<<"("<< itNodo->costoCaminoMasHeuristico_<< ")- ";
+
+     os << endl<<endl;
+     os << "Nodos Inspeccionados           : ";
+     //
+     // Muestro los nodos inespeccionados
+     //
+     for (itNodo=inspeccionados_.begin();itNodo!= inspeccionados_.end(); itNodo++)
+         //os << itNodo->estado_.id_ << ",";
+         os << itNodo->estado_.id_ << "(" << itNodo->costoCamino_ << ")" << "(" << itNodo->valorHeuristico_<< ")"<<"("<< itNodo->costoCaminoMasHeuristico_<< ")- ";
+
+      os << endl;
+
+//
+// Muestro nombre de grafo, numero de nodos, tamaño de la solucion, nodo origen, nodo destino.
+//
+//os << nombreFichero_ << " | " << numeroNodos_ << " | " << caminoSolucion_.size() << " | " << nodoOrigen_ << " | " << nodoDestino_ << " | ";
 
 
+ }
 
-os << endl<<endl;
+ os << endl<<endl;
+
 return os;
 
 }
-
+//version 1
 bool GrafoIA_t::existeNodo(set<NodeIA_t>::iterator &valor,int sucesor)
 {
 
@@ -262,6 +336,35 @@ bool GrafoIA_t::existeNodo(set<NodeIA_t>::iterator &valor,int sucesor)
     return existe;
 }
 
+//version 2
+bool GrafoIA_t::existeNodo(int valor)
+{
+   set<NodeIA_t>::iterator itNodo;
+    bool encontrado=false;
+    itNodo=generados_.begin();
+
+    //busco nodo en generados
+    while ((itNodo!=generados_.end()) && (encontrado==false))
+          {
+                if (itNodo->estado_.id_==valor)
+                        encontrado=true;
+                itNodo++;
+           }
+
+    itNodo=inspeccionados_.begin();
+
+    //busco nodo en inspeccionados
+    while ((itNodo!=inspeccionados_.end()) && (encontrado==false))
+    {
+            if (itNodo->estado_.id_==valor)
+                encontrado=true;
+          itNodo++;
+    }
+
+    return encontrado;
+}
+
+//version 1
 void GrafoIA_t::crearCaminoSolucion(set<NodeIA_t>::iterator &valor)
 {
     NodeIA_t aux;        
@@ -279,6 +382,53 @@ void GrafoIA_t::crearCaminoSolucion(set<NodeIA_t>::iterator &valor)
 
 }
 
+//version 2
+void GrafoIA_t::crearCaminoSolucion(NodeIA_t &valor)
+{
+    NodeIA_t aux;
+    set<NodeIA_t>::iterator itNodo;
+    bool encontrado;
+
+    caminoSolucion_.clear();
+    caminoSolucion_.push_back(valor);    //introduzco primero nodo objetivo.
+
+    aux=valor;
+    encontrado=false;
+
+    while (aux.padre_!=0)
+    {
+        itNodo=inspeccionados_.begin();
+
+        //busco nodo en inspeccionados
+        while ((itNodo!=inspeccionados_.end()) && (encontrado==false))
+        {
+                if (itNodo->estado_.id_==aux.padre_)
+
+                {
+                       encontrado=true;
+                       aux=*itNodo;
+                       //inspeccionados_.erase(itNodo); //borro este nodo de la lista.
+                }
+
+                else
+                    itNodo++;
+        }
+
+
+         if (encontrado)
+         {
+             caminoSolucion_.push_back(aux);
+             encontrado=false;
+
+         }
+
+
+    }
+
+    //inspeccionados_.clear(); //lebero ya  toda la memoria del set que no voy a utilizar.
+
+
+}
 
 
 
@@ -286,30 +436,57 @@ void GrafoIA_t::crearCaminoSolucion(set<NodeIA_t>::iterator &valor)
 void GrafoIA_t::generarSucesores(set<NodeIA_t>::iterator &valor)
 {
 
-    for (int i=0; i < valor->LS_.size();i++)
-    {
-
-        if (!existeNodo(valor,valor->LS_[i].first)) //compruebo si existe numero de nodo en su camino hacia el nodo raiz
+        for (int i=0; i < valor->LS_.size();i++)
         {
 
+            if (!existeNodo(valor,valor->LS_[i].first)) //compruebo si existe numero de nodo en su camino hacia el nodo raiz
+            {
 
+
+                NodeIA_t nodoNuevo;
+
+                nodoNuevo=grafo_[valor->LS_[i].first-1];
+                nodoNuevo.costoCamino_=valor->costoCamino_+valor->LS_[i].second;
+                nodoNuevo.costoCaminoMasHeuristico_=nodoNuevo.costoCamino_+nodoNuevo.valorHeuristico_;
+                nodoNuevo.padrePuntero_=valor->current(); //pongo direncción del nodo padre.
+                nodos_.insert(nodoNuevo);
+                nodosGenerados_++;  //lo descuento de nodos generados
+
+            }
+        }
+        valor->estudiado_=true; // marco nodo como estudiado.
+    nodosInspeccionados_++; //lo sumo a nodos inspeccionados
+
+
+}
+
+void GrafoIA_t::generarSucesores(NodeIA_t &valor)
+{
+
+    for (int i=0; i < valor.LS_.size();i++)
+    {
+        if (!existeNodo(valor.LS_[i].first))
+        {
+
+            //si el nodo no existe en generados ni inspeccionados guardo al nodo sucesor como
+            //predecesor y lo agreo a la lista de generados.
+
+            set<NodeIA_t>::iterator itNodo;
             NodeIA_t nodoNuevo;
 
-            nodoNuevo=grafo_[valor->LS_[i].first-1];
-            nodoNuevo.costoCamino_=valor->costoCamino_+valor->LS_[i].second;
-            nodoNuevo.costoCaminoMasHeuristico_=nodoNuevo.costoCamino_+nodoNuevo.valorHeuristico_;            
-            nodoNuevo.padrePuntero_=valor->current(); //pongo direncción del nodo padre.
-            nodos_.insert(nodoNuevo);
-            nodosGenerados_++;  //lo descuento de nodos generados
+            nodoNuevo=grafo_[valor.LS_[i].first-1];
+            nodoNuevo.costoCamino_=valor.costoCamino_+valor.LS_[i].second;
+            nodoNuevo.costoCaminoMasHeuristico_=nodoNuevo.costoCamino_+nodoNuevo.valorHeuristico_;
+            nodoNuevo.padre_=valor.estado_.id_;
+            //nodoNuevo.padrePuntero_=
+            generados_.insert(nodoNuevo);
 
         }
     }
-    valor->estudiado_=true; // marco nodo como estudiado.
-nodosInspeccionados_++; //lo sumo a nodos inspeccionados
 }
 
 
-bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino)
+bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino, bool version1)
 {
  set<NodeIA_t>::iterator itNodo;
  NodeIA_t aux;
@@ -320,37 +497,76 @@ bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino)
        limpiarArbol();
 
     //actualizo los valores origen y destino para visualizacion posterior.
+       nodoOrigen_=nodoOrigen;
+       nodoDestino_=nodoDestino;
 
-    nodoOrigen_=nodoOrigen;
-    nodoDestino_=nodoDestino;
+    version1_=version1;
 
-         aux=grafo_[nodoOrigen-1]; //nodo raiz         
-        aux.padrePuntero_=NULL;
-        nodos_.insert(aux); //inserto nodo en la lista
-        nodosGenerados_=1;
-    do{
+    if (version1_)//a estrealla version 1
+    {
+        aux=grafo_[nodoOrigen-1]; //nodo raiz
+       aux.padrePuntero_=NULL;
+       nodos_.insert(aux); //inserto nodo en la lista
+       nodosGenerados_=1;
+   do{
 
-            itNodo=nodos_.begin(); //me coloco en el primer nodo.
-            while (itNodo->estudiado_==true)
-                itNodo++;   //me salto los nodos ya estudiados.
-
-
-        if (itNodo->estado_.id_==nodoDestino)
-              {
-                itNodo->estudiado_=true;
-                nodosInspeccionados_++; //lo sumo a nodos inspeccionados
-                solucionEncontrada_=true;
-                crearCaminoSolucion(itNodo);
-               }
-
-        else
-            generarSucesores(itNodo);
+           itNodo=nodos_.begin(); //me coloco en el primer nodo.
+           while (itNodo->estudiado_==true)
+               itNodo++;   //me salto los nodos ya estudiados.
 
 
-      }  while (!solucionEncontrada_);
+       if (itNodo->estado_.id_==nodoDestino)
+             {
+               itNodo->estudiado_=true;
+               nodosInspeccionados_++; //lo sumo a nodos inspeccionados
+               solucionEncontrada_=true;
+               crearCaminoSolucion(itNodo);
+              }
 
-return solucionEncontrada_;
+       else
+           generarSucesores(itNodo);
 
+
+     }  while (!solucionEncontrada_);
+
+
+    }
+    else // a estrella version 2
+    {
+        aux=grafo_[nodoOrigen-1]; //nodo raiz
+        aux.padre_=0; //este cero indica que es el nodo raiz, para cuando haya que volver sobre sus pasos para mostrar el camino obtenido
+
+           generados_.insert(aux); //inserto origen en generados.
+   do{
+
+           if (generados_.empty())
+               return false;
+
+       itNodo=generados_.begin();
+       aux=*itNodo;
+       generados_.erase(itNodo); //lo quito de generados para ahorrar memoria,
+
+       inspeccionados_.insert(aux);  //lo agrego a inspeccionados.
+
+
+       if (aux.estado_.id_==nodoDestino)
+             {
+               solucionEncontrada_=true;
+               crearCaminoSolucion(aux);
+               //generados_.clear(); //libero esta memoria, pusto que el trazo es ya solo con nodos que estarán en inspeccionados.
+
+              }
+
+       else
+           generarSucesores(aux);
+
+
+     }  while (!solucionEncontrada_);
+
+
+    }
+
+    return solucionEncontrada_;
 }
 
 void GrafoIA_t::limpiar()
@@ -358,16 +574,25 @@ void GrafoIA_t::limpiar()
     grafo_.clear();
     limpiarArbol(); //limpia lo que tenga que ver solo con la busqueda y creacion del arbol de busqueda.
     numeroNodos_=0;
+    solucionEncontrada_=false;
+    version1_=true;
+
+
+    //para version 1
     nodosGenerados_=0;
     nodosInspeccionados_=0;
-    solucionEncontrada_=false;
 }
 
 void GrafoIA_t::limpiarArbol()
 {
-    nodos_.clear();
+    nodos_.clear();    
     caminoSolucion_.clear();
     solucionEncontrada_=false;
+    version1_=true;
     nodoDestino_=0;
     nodoOrigen_=0;
+
+    //para version 2
+    generados_.clear();
+    inspeccionados_.clear();
 }

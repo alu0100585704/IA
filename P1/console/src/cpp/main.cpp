@@ -70,6 +70,7 @@ void menu(void)
 
 {
     char opcion;
+    int nodoOrigen,nodoDestino;
 
     borrar_pantalla();
 
@@ -77,11 +78,12 @@ void menu(void)
 {
     borrar_pantalla();
     cout << "\n\n Practica 1. Inteligencia Artificial \n\n";
-    cout << "\n c. [c]argar grafo desde fichero";
-    cout << "\n h. [h]argar heuristica del grafo desde fichero";
-    cout << "\n m. [m]mostrar fichero cargado";
-    cout << "\n b. [b]Buscar solucion opotima";
-    cout << "\n q. Finalizar programa";
+    cout << "\n [c]argar grafo desde fichero";
+    cout << "\n [h]argar heuristica del grafo desde fichero";
+    cout << "\n [m]ostrar fichero cargado";
+    cout << "\n [a]A* version 1";
+    cout << "\n [A]A* version 2";
+    cout << "\n [F]inalizar programa";
 
 
     cout << "Eliga un opcion : ";
@@ -116,10 +118,10 @@ void menu(void)
          tecla();
 
     break;
-    case 'b':
+    case 'a':
 
-        int nodoOrigen,nodoDestino;
         borrar_pantalla();
+        cout << "Version 1 algoritmo: Un solo conjunto " << endl;
         cout << "\n\nIntroduzca Número de nodo/estado  origen: ";
         cin.clear();
         cin >> nodoOrigen;
@@ -128,7 +130,39 @@ void menu(void)
         cin.clear();
         cin >> nodoDestino;
 
-        if (migrafo.aEstrella(nodoOrigen,nodoDestino))
+
+        if (migrafo.aEstrella(nodoOrigen,nodoDestino,true))
+          {
+            migrafo.mostrarCaminoSolucion(cout);
+            cout << endl << "Volcando resultados a resultado.txt del directorio actual. . ."<< endl;
+            ofstream fichero_resultados;
+            fichero_resultados.open("resuldato.txt",std::ios_base::app);
+            migrafo.mostrarCaminoSolucion(fichero_resultados);
+            fichero_resultados.close();
+            cout << "Terminado";
+        }
+        else {
+            cout << endl<< "Solucion no Encontrada" << endl;
+        }
+        tecla();
+        tecla();
+
+        break;
+
+    case 'A':
+
+        borrar_pantalla();
+        cout << "Version 2 algoritmo: Dos conjuntos " << endl;
+        cout << "\n\nIntroduzca Número de nodo/estado  origen: ";
+        cin.clear();
+        cin >> nodoOrigen;
+
+        cout << "\n\nIntroduzca Número de nodo/estado  destino (deberia coincidir con valor cero en su funcion heuristica): ";
+        cin.clear();
+        cin >> nodoDestino;
+
+
+        if (migrafo.aEstrella(nodoOrigen,nodoDestino,false))
           {
             migrafo.mostrarCaminoSolucion(cout);
             cout << endl << "Volcando resultados a resultado.txt del directorio actual. . ."<< endl;
@@ -146,9 +180,10 @@ void menu(void)
 
     break;
 
+
     }
 
-  }   while ((opcion!='q') && (opcion !='Q') );
+  }   while ((opcion!='f') && (opcion !='F') );
 
 
 
