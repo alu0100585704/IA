@@ -105,6 +105,7 @@ void menu(void)
         }
          tecla();         
 
+
     break;
 
     case 'h':
@@ -118,7 +119,8 @@ void menu(void)
          tecla();
 
     break;
-    case 'a':
+         //version original
+    /*case 'a':
 
         borrar_pantalla();
         cout << "Version 1 algoritmo: Un solo conjunto " << endl;
@@ -147,7 +149,45 @@ void menu(void)
         tecla();
         tecla();
 
-        break;
+        break;*/
+
+         //version modificada para la práctica.
+    case 'a':
+srand(time(NULL)); //inicializo semilla
+            borrar_pantalla();
+            cout << "Version 1 algoritmo: Un solo conjunto " << endl;
+            cout << "\n\nIntroduzca Número de nodo/estado  origen: ";
+            cin.clear();
+            cin >> nodoOrigen;
+
+            cout << "\n\nIntroduzca Número de nodo/estado  destino (deberia coincidir con valor cero en su funcion heuristica): ";
+            cin.clear();
+            cin >> nodoDestino;
+
+    for (int i=0; i<10; i++) //para repetir la prueba 10 veces
+    {
+            if (migrafo.aEstrella_mod(nodoOrigen,nodoDestino))
+              {
+                migrafo.mostrarCaminoSolucion(cout);
+                cout << endl << "Volcando resultados a resultado.txt del directorio actual. . ."<< endl;
+                ofstream fichero_resultados;
+                fichero_resultados.open("resuldato.txt",std::ios_base::app);
+                migrafo.mostrarCaminoSolucion(fichero_resultados);
+                fichero_resultados.close();
+                cout << "Terminado";
+            }
+            else {
+                ofstream fichero_resultados;
+                fichero_resultados.open("resuldato.txt",std::ios_base::app);
+                fichero_resultados  << endl << endl << "Solucion no Encontrada" << endl << endl;
+                fichero_resultados.close();
+
+                cout << endl<< "Solucion no Encontrada" << endl;
+            }
+            tecla();
+            tecla();
+       }
+            break;
 
     case 'A':
 

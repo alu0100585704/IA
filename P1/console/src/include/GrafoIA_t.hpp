@@ -5,6 +5,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <time.h>
 using namespace std;
 
 
@@ -51,12 +52,19 @@ public:
 
     ~GrafoIA_t();
 
+    //métodos nuevos modificados para exclusivamente para la modificación de la práctica.
+    //Modifico solo la version 1 de mi implementación.
+    bool aEstrella_mod(int nodoOrigen, int nodoDestino);
+
+
+// Nodos originales
     bool actualizar(char nombrefichero[]);
     bool empy();
     void limpiar();    
     void limpiarArbol();
     bool aplicarHeuristica(char nombrefichero[]);
     bool aEstrella(int nodoOrigen, int nodoDestino,bool version1);
+
     ostream &mostrarCaminoSolucion(ostream &os);
     friend ostream & operator << (ostream & os, GrafoIA_t &valor);
     string nombreFichero_,nombreFicheroHeuristica_;
@@ -523,6 +531,7 @@ bool GrafoIA_t::aEstrella(int nodoOrigen, int nodoDestino, bool version1)
                crearCaminoSolucion(itNodo);
               }
 
+
        else
            generarSucesores(itNodo);
 
@@ -591,8 +600,92 @@ void GrafoIA_t::limpiarArbol()
     version1_=true;
     nodoDestino_=0;
     nodoOrigen_=0;
-
+    nodosGenerados_=0;
+    nodosInspeccionados_=0;
     //para version 2
     generados_.clear();
     inspeccionados_.clear();
+}
+//
+// Implementación de los métodos especiales para la práctica.
+//
+
+bool GrafoIA_t::aEstrella_mod(int nodoOrigen, int nodoDestino)
+{
+ set<NodeIA_t>::iterator itNodo;
+ NodeIA_t aux;
+
+    if (numeroNodos_==0)  //REGRESO PORQUE NO SE HA CARGADO TODAVÍA NINGUN GRAFO.
+        return false;
+
+       limpiarArbol();
+
+
+    //actualizo los valores origen y destino para visualizacion posterior.
+       nodoOrigen_=nodoOrigen;
+       nodoDestino_=nodoDestino;
+
+       //Selecciono nuevo nodo orgien al azar de entre los sucesores del nodo raix(nodo origen)
+
+       aux=grafo_[nodoOrigen-1]; //nodo raiz
+       aux.padrePuntero_=NULL;
+      nodos_.insert(aux); //inserto nodo en la lista
+      nodosGenerados_=1;
+      itNodo=nodos_.begin(); //me coloco en el primer nodo.
+      generarSucesores(itNodo); //genero sus sucesores.
+      nodos_.erase(itNodo); //borro el nodo padre, el raiz
+      //
+      //Eligo al azar un nuevo nodo raiz
+      //
+
+      int nodo_azar=1+rand()%(nodos_.size()-1); //eligo numero de incrementos de los nodos que me voy a mover.
+
+      cout << endl << nodo_azar;
+
+      itNodo=nodos_.begin(); //me coloco en el nuevo primero nodo de la lista.
+      for (int i=1; i<nodo_azar;i++)
+          itNodo++;   //me voy saltando nodos.
+
+
+      aux=*itNodo; //salvaguardo el nodo que hara de nodo origen
+      nodos_.clear(); //limpio todos los nodos de la lista
+      aux.padrePuntero_=NULL;
+      nodos_.insert(aux);
+      nodosGenerados_=1;
+
+     do{
+
+           itNodo=nodos_.begin(); //me coloco en el primer nodo.
+           while ((itNodo->estudiado_==true) && (itNodo!=nodos_.end()))
+               itNodo++;   //me salto los nodos ya estudiados.
+
+            //compruebo si salido porque se llego al final de la lista
+         if (itNodo!=nodos_.end())
+         {
+
+
+             if (itNodo->estado_.id_==nodoDestino)
+                   {
+                     itNodo->estudiado_=true;
+
+                     nodosInspeccionados_++; //lo sumo a nodos inspeccionados
+                     solucionEncontrada_=true;
+                     crearCaminoSolucion(itNodo);
+                    }
+
+             else
+                 generarSucesores(itNodo);
+
+         }
+
+         else
+                solucionEncontrada_=false; //devuelvo que solución no encontrada
+
+
+
+
+
+     }  while ((!solucionEncontrada_) && (itNodo!=nodos_.end()));
+
+    return solucionEncontrada_;
 }
