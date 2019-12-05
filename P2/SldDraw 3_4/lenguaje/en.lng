@@ -1,0 +1,130 @@
+% Dialogo botones
+completar('Full').
+iniciar('Init').
+cancelar('Cancel').
+aceptar('Ok').
+
+% Dialogo Construir Arbol
+construccion_del_arbol('Tree building').
+nivel('Level (-+)').
+deteccion_de_ciclos('Loop detection (q)').
+regla_de_seleccion('Selection rule (e r t)').
+regla_de_busqueda('Search rule (d f g)').
+si('Yes').
+no('No').
+izquierda('Left-right').
+derecha('Right-Left').
+indeterminada('Not-determ').
+arriba('Top-down').
+abajo('Bottom-up').
+
+% Dialogo Visualizar
+visualizacion('Visualization').
+factor_horizontal('Horizontal factor (cursor left-right)').
+salto_vertical('Vertical salto (cursor up-down)').
+desplazamiento_horizontal('Horizontal offset (SHIFT + cursor left-right)').
+desplazamiento_vertical('Vertical offset (SHIFT + cursor up-down)').
+tamano_fuente('Font size').
+etiqueta_de_arcos('Arc label (z)').
+umg('G.M.U.').
+numero_clausula('Clausula num.').
+ambos('Both').
+objetivo_mostrado('Goal show (a)').
+completo('Full').
+seleccionado('Selected').
+alineacion_objetivos('Aligned goals (o)').
+
+%Dialogo Edición
+edicion('Edit').
+programa('Program').
+objetivo('Goal').
+
+%Dialogo Consultar
+datos('Information').
+datos_consultar('Consult').
+datos_guardar('Save').
+explorar('Browser...').
+
+%Dialogo Detalles
+detalles('Details (*)').
+estado('Status').
+incompleto('Incomplete').
+numero_nodos('Number of nodes').
+maxima_profundidad('Max. depth').
+
+%Dialogo Imprimir
+numero_de_paginas('Number of pages').
+horizontal('Horizontal').
+vertical('Vertical').
+
+%Dialogo exportar
+guardar_en_postscript('Save as postscript').
+nombre_del_fichero('Filename').
+
+%Dialogo Menus
+archivo_menu('File').
+editar_menu('Edit').
+ejecutar_menu('Run').
+configuracion_menu('Configuration').
+ayuda_menu('Help').
+consultar_menu('Consult...').
+guardar_menu('Save as...').
+detalles_menu('Details...(*)').
+imprimir_menu('Print...').
+exportar_menu('Export...').
+salir_menu('Exit').
+editor_externo_menu('External editor').
+programa_menu('Program (RETURN)').
+hasta_exito_menu('Goto success (x)').
+hasta_punto_de_ruptura_menu('Goto breakpoint (TAB)').
+paso_a_paso_menu('Step (s)').
+iniciar_menu('Init (i)').
+restaurar_menu('Restart (HOME)').
+visualizacion_menu('Display...').
+construccion_menu('Tree building...').
+ayuda_teclas_menu('Keybindings...').
+acerca_de_menu('About...').
+
+%Barra estado
+barra_estado('Prg: ~w, Obj: ~w, Sta: ~w, Nodes: ~d, Depth: ~d, Sel.R: ~w, Search.R: ~w').
+
+%Zona dibujo
+exito('~d. success~n~w').
+fallo('~d) ~w~nfail').
+tope('~d) ~w~n...').
+ciclo_ciclica('~d) ~w~nCyclic~nbranch->~d').
+ciclo_repetida('~d) ~w~nRepeated~nbranch->~d').
+corte('~d) Pruned~nbranch cl(~d)').
+
+%Errores
+error_nombre_fichero('Not found ~n~n~w').
+error_lectura_fichero('Syntax error in ~w~n~w~nRow : ~d').
+error_creacion_arbol('Error~n~w~nRetry').
+error_falta_memoria('Stack overflow: global.\nIncomplete graphics').
+
+%Pasos de resolución
+pasos_de_resolucion('Resolution step').
+clausula_seleccionada('Clause selected: ').
+objetivo_previo('Previous goal: ').
+formula_atomica_seleccionada('Atomic formula selected: ').
+nuevo_objetivo('New goal: ').
+iteracion('Iteration ').
+unifican('---------> They unify').
+paso1('   Step 1: ').
+paso2('   Step 2: Pair of discordancia D').
+paso3('   Step 3: ').
+paso4('   Step 4: ').
+paso5('   Step 5: Sigma').
+son_iguales('They are equal').
+son_distintos('They are different').
+variable_y_termino('Variable and I finish. OK').
+no_occur_chech('No occur check. OK').
+
+%Acerca de 
+ac_visualizacion('Sld Tree View').
+ac_version('Version in English').    
+ac_arboles('Arboles SLD / SLD trees').
+ac_director('Director of the project: ~w').
+ac_alumno('Student : ~w').
+ac_fecha('January 2002 - January 2003').
+		    

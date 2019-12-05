@@ -1,0 +1,1 @@
+:-solucion([pastor,lobo,oveja,col],X).

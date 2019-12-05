@@ -1,0 +1,129 @@
+SldDraw 3.4
+===========
+Compilado con la SWI_Prolog V5.4.0
+
+SldDraw 3.3
+===========
+Compilado con SWI-Prolog V5.2.8. 
+
+SldDraw 3.2
+===========
+Compilado con SWI-Prolog V5.2.1. Existe la posibilidad de inhibir la consola.
+Hay dos versiones. 
+	- Con consola: SldDraw 3.2c.exe
+		- Los predicados write, writeln, nl
+		  escriben sobre la consola.
+	- Sin consola: SldDraw 3.2.exe
+		- Los predicados write, writeln, nl
+		  no escriben en ningún sitio.
+
+SldDraw 3.1
+===========
+- Inicialmente se carga un programa (programa.pl) y un objetivo (objetivo.pl).
+  Estos son de lectura. Pueden cambiarse el nombre con Guardar como...
+- Se mejora la presentación de 
+   - Paso a paso
+   - Hasta éxito
+   - Hasta punto de ruptura
+  Se elimina la opción de color de programa iluminado
+  (programaIluminadoColor) del archivo sld.ini
+  Se incluye la seleccion de los siguiente colores para caja y programa:
+   - colorPasoAPaso               Avance Paso a Paso 
+   - colorHastaExito              Avance Hasta Éxito
+   - colorHastaPuntoRuptura       Avance Hasta Punto de Ruptura
+
+- El editor interno funciona con las teclas tradicionales. En particular:
+   - CTRL C para copiar
+   - CTRL V para pegar
+
+- Se elimina un error de representación. Si una rama estaba repetida (no se pinta de nuevo)
+  pero tampoco activa un corte si lo contiene. Por tanto podían aparecer esas
+  ramas que realmente estaría podadas.
+  SOLUCION: Si una rama activa un corte, aunque esté repetida, se pinta. 
+
+SldDraw 3.0
+===========
+Visualización de árboles SLD.
+=============================
+Admite programas Prolog con:
+
+- Predicados lógicos.
+- Variables anónimas.
+- Unificación y no unificación.
+- Aritmética extralógica.
+- Metaprogramación.
+- Operador univ (=..).
+- Cortes.
+- Predicados write, write_ln, nl.
+- Predicado call
+
+No admite programas Prolog con:
+
+- Negación. Puede utilizarse call, corte y fallo.
+- Cualquier otro predicado de entrada/salida.
+- Predicados predefinidos.
+
+INSTALACIÓN
+===========
+Se proporcionan todas las librerías necesarias para la ejecución del programa.
+Simplemente colocar todos los ficheros en un directorio.
+
+CONFIGURACIÓN
+=============
+Existe un fichero de configuración "sld.ini". Aquí se puede indicar
+	- El idioma : en (Ingles) o es (Español)
+	- El editor 
+	- Los colores de
+		- nodoColor: color de un nodo interno del árbol
+		- corteColor: color de un nodo corte
+		- falloColor: color de un nodo fallo
+		- cicloColor: color de un nodo ciclo
+		- topeColor: color de un nodo tope
+		- uniColor: color de las unificaciones		
+		- uniPrimColor: color de las unificaciones desde primitivas
+		- programaColor: color clausula programa
+		- programaIluminadoColor: color clausula programa seleccionada.	
+	- El tamaño de los editores internos
+	- El control de ciclos
+		
+También se proporciona ejemplos en el directorio ejemplos.
+
+USO DEL PROGRAMA:
+=================
+
+El uso del programa es bastante intuitivo. Sólo se explican algunas opciones:
+
+-Nivel: Profundidad máxima del árbol. Es peligroso si debajo del nivel dado aparece un corte pues puede
+       falsear el resultado.
+
+-Factor Horizontal: es un valor que determina cómo de ancho será el árbol. Cuanto mayor sean los objetivos,
+       mayor debe ser este factor.
+
+-Salto Vertical: Determina el hueco que habrá entre objetivos de distintos niveles.
+
+-Desplazamiento Horizontal: Determina la posición del árbol con respecto a la parte izquierda del dibujo.
+
+-Desplazamiento Vertical: Determina la posición del árbol con respecto a la parte superior del dibujo.
+
+-Tam. Fuente: Determina el tamaño de la fuente de representación.
+
+
+Pulsaciones con el ratón:
+
+- Con doble click del ratón en una unificación muestra de dónde ha salido
+- Con doble click en un objetivo lo muestra más claramente
+- Con un click del pulsador derecho, muestra la ventana de controles de visualización. 
+
+Existe un juego de pulsaciones de teclado que permite modificar el aspecto y configuración del árbol.
+
+Dentro del editor EMACS  pueden utilizarse los controles EMACS
+En particular:
+	-Con el botón derecho se copia lo que esté seleccionado
+	-Con el botón de en medio (o dos botones simultáneos) se pega lo que haya sido copiado
+
+============
+
+Cualquier error o sugerencia puede enviarla a
+
+	pacog@lcc.uma.es
+

@@ -1,4 +1,59 @@
-%  Prácticas de Prolog - Inteligencia Artificial
+%Condición de exito
+orillas([lobo,oveja,col],[pastor]).
+%
+%Situaciones posibles
+%
+orillas([pastor,lobo,oveja,col],[]).
+orillas([lobo],[pastor,oveja,col]).
+orillas([oveja],[pastor,lobo,col]).
+orillas([col],[pastor,lobo,oveja]).
+orillas([pastor,oveja],[lobo,col]).
+orillas([lobo,col],[pastor,oveja]).
+orillas([pastor,lobo,oveja],[col]).
+orillas([oveja,col,pastor],[lobo]).
+orillas([col,pastor,lobo],[oveja]).
+%
+%las situaciones que no se pueden dar
+%
+%orillas([pastor],[lobo,oveja,col]).
+%orillas([pastor,lobo],[oveja,col]).
+%orillas([pastor,col],[lobo,oveja]).
+%orillas([lobo,oveja],[pastor,col]).
+%orillas([oveja,col],[pastor,lobo]).
+%orillas([lobo,oveja,col],[pastor]).
+
+%X=[[[],[]]]
+
+
+%solucion([],[pastor,oveja,col,lobo]).
+solucion(Lista,X):-solucionR(Lista,[],X).
+%solucionR([oveja,col,lobo],[pastor],[pastor]).
+%solucionR(OrillaOrigen,OrillaDestino,X):- member(pastor,OrillaOrigen), pastorEnOrigen(OrillaOrigen,OrillaDestino),solucion(OrillaOrigen,OrillaDestino).
+solucionR(OrillaOrigen,OrillaDestino,X):- buscar(pastor,OrillaOrigen),pastorEnOrigen(OrillaOrigen,OrillaDestino),solucion(OrillaOrigen,OrillaDestino).
+%solucion(OrillaOrigen,OrillaDestino):- member(pastor,OrigllaDestino), pastorEnDestino(OrillaOrigen,OrillaDestino),solucion(OrillaOrigen,OrillaDestino).
+
+pastorEnOrigen(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaOrigen,OrillaSinPastor), OrillaOrigen = OrillaSinPastor.
+%pastorEnOrigen(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaOrigen,OrillaSinPastor),OrillaOrigen = OrillaSinPastor, agregar([pastor],OrillaDestino,NuevaOrillaDestino),OrillaDestino=NuevaOrillaDestino,orillas(OrillaOrigen,OrillaDestino).
+%pastorEnOrigen(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaOrigen,OrillaDestino),extraer(oveja,OrillaOrigen,OrillaDestino),orillas(OrillaOrigen,OrillaDestino).
+%pastorEnOrigen(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaOrigen,OrillaDestino),extraer(lobo,OrillaOrigen,OrillaDestino),orillas(OrillaOrigen,OrillaDestino).
+%pastorEnOrigen(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaOrigen,OrillaDestino),extraer(col,OrillaOrigen,OrillaDestino),orillas(OrillaOrigen,OrillaDestino).
+
+%pastorEnDestino(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaDestino,OrillaOrigen),orillas(OrillaOrigen,OrillaDestino).
+%pastorEnDestino(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaDestino,OrillaOrigen),extraer(oveja,OrillaDestino,OrillaOrigen),orillas(OrillaOrigen,OrillaDestino).
+%pastorEnDestino(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaDestino,OrillaOrigen),extraer(col,OrillaDestino,OrillaOrigen),orillas(OrillaOrigen,OrillaDestino).
+%pastorEnDestino(OrillaOrigen,OrillaDestino):- extraer(pastor,OrillaDestino,OrillaOrigen),extraer(lobo,OrillaDestino,OrillaOrigen),orillas(OrillaOrigen,OrillaDestino).
+
+%append([[[a,b] | [[b,c]]]],[[[f,c] | [[x,y]]]],Y).
+%append([[[a,b] | [[b,c]]]],[[[a,b],[c,d]]],Y).
+
+%buscar(Valor,[]).
+buscar(Valor,[Valor | Cola]).
+buscar(Valor,[Otro | Cola]):- buscar(Valor,Cola).
+
+agregar([], L, L).
+agregar([H|L1], L2, [H|L3]):- agregar(L1, L2, L3).
+
+%  %  Prácticas de Prolog - Inteligencia Artificial
 % Grado en Ingeniería Informática, curso 2019/2020
 % ----------- Universidad de La Laguna -----------
 %   Javier Hernández Aceituno (jhernaac@ull.es)
@@ -16,40 +71,3 @@ extraer(X,[A|T],[A|R]):-extraer(X,T,R).
 % Ej: permutacion([a,b,c],[b,a,c]).
 permutacion([],[]).
 permutacion([X|T],Y):-extraer(X,Y,Z),permutacion(T,Z).
-
-% no_vecinos(A,B) - Unifica si A y B son números
-% no consecutivos.
-no_vecinos(A,B):- A=\=B+1, A=\=B-1.
-
-% solucion(A,[B,C,D],[E,F,G],H) - Unifica si, para
-% la cuadrícula mostrada, las variables
-% A a H son números de 1 a 8, tales que       A
-% no existen números consecutivos en        B C D
-% casillas vecinas horizontal, vertical     E F G
-% ni diagonalmente.                           H
-% Ej: solucion(2,[5,8,6],[3,1,4],7).
-solucion(A,[B,C,D],[E,F,G],H):-
-    permutacion([A,B,C,D,E,F,G,H],[1,2,3,4,5,6,7,8]),
-    no_vecinos(A,B),no_vecinos(A,C),no_vecinos(A,D),
-    no_vecinos(B,C),no_vecinos(B,E),no_vecinos(B,F),
-    no_vecinos(C,D),no_vecinos(C,E),no_vecinos(C,F),
-    no_vecinos(C,G),no_vecinos(D,F),no_vecinos(D,G),
-    no_vecinos(E,F),no_vecinos(E,H),no_vecinos(F,G),
-    no_vecinos(F,H),no_vecinos(G,H).
-
-% ================================================
-
-% Definición mediante hechos de un grafo.
-arista(1,2).    %    ,->-( 2 )->-.
-arista(1,3).    %   /      |      \
-arista(2,4).    % ( 1 )    ^    ( 4 ) 
-arista(3,2).    %   \      |      /
-arista(3,4).    %    `->-( 3 )->-´
-
-% camino(X,Y,L) - Unifica si L es una lista de nodos
-% que represente un camino válido en el grafo descrito
-% desde el nodo X hasta el nodo Y.
-% Ej: camino(1,4,[1,3,2,4]).
-camino(X,X,Acc,R):-reverse(Acc,R).
-camino(X,Y,Acc,R):-arista(X,Z),camino(Z,Y,[Z|Acc],R).
-camino(X,Y,R):-camino(X,Y,[X],R). % wrapper

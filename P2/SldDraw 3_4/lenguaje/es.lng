@@ -1,0 +1,131 @@
+% Dialogo botones
+completar('Completar').
+iniciar('Iniciar').
+cancelar('Cancelar').
+aceptar('Aceptar').
+
+% Dialogo Construir Arbol
+construccion_del_arbol('Construcción del árbol').
+nivel('Nivel (-+)').
+deteccion_de_ciclos('Deteccion ciclos (q)').
+regla_de_seleccion('Regla de seleccion (e r t)').
+regla_de_busqueda('Regla de busqueda (d f g)').
+si('Si').
+no('No').
+izquierda('Izqda-Drcha').
+derecha('Drcha-Izqda').
+indeterminada('Indeterminada').
+arriba('Arriba-abajo').
+abajo('Abajo-arriba').
+
+% Dialogo Visualizar
+visualizacion('Visualización').
+factor_horizontal('Factor horizontal (cursor izda-drcha)').
+salto_vertical('Salto vertical (cursor arriba-abajo)').
+desplazamiento_horizontal('Despl. horizontal (SHIFT + cursor izda-drcha)').
+desplazamiento_vertical('Despl. vertical (SHIFT + cursor izda-drcha)').
+tamano_fuente('Tamaño fuente').
+etiqueta_de_arcos('Etiqueta de arcos (z)').
+umg('U.M.G.').
+numero_clausula('Núm. cláusula').
+ambos('Ambos').
+objetivo_mostrado('Objetivo mostrado (a)').
+completo('Completo').
+seleccionado('Seleccionado').
+alineacion_objetivos('Alineación objetivos (o)').
+
+%Dialogo Edición
+edicion('Edición').
+programa('Programa').
+objetivo('Objetivo').
+
+%Dialogo Consultar Guardar
+datos('Datos').
+datos_consultar('Consultar').
+datos_guardar('Guardar').
+explorar('Explorar...').
+
+%Dialogo Detalles
+detalles('Detalles (*)').
+estado('Estado').
+incompleto('Incompleto').
+numero_nodos('Número nodos').
+maxima_profundidad('Máxima profundidad').
+
+%Dialogo Imprimir
+numero_de_paginas('Número de páginas').
+horizontal('Horizontal').
+vertical('Vertical').
+
+%Dialogo exportar
+guardar_en_postscript('Guardar en postscript').
+nombre_del_fichero('Nombre del fichero').
+
+%Dialogo Menus
+archivo_menu('Archivo').
+editar_menu('Editar').
+ejecutar_menu('Ejecutar').
+configuracion_menu('Configuración').
+ayuda_menu('Ayuda').
+consultar_menu('Consultar...').
+guardar_menu('Guardar como...').
+detalles_menu('Detalles...(*)').
+imprimir_menu('Imprimir...').
+exportar_menu('Exportar...').
+salir_menu('Salir').
+editor_externo_menu('Editor externo').
+programa_menu('Programa (RETURN)').
+hasta_exito_menu('Hasta éxito (x)').
+hasta_punto_de_ruptura_menu('Hasta punto de ruptura (TAB)').
+paso_a_paso_menu('Paso a paso (s)').
+iniciar_menu('Iniciar (i)').
+restaurar_menu('Restaurar (HOME)').
+visualizacion_menu('Visualizacion...').
+construccion_menu('Construcción del árbol...').
+ayuda_teclas_menu('Ayuda teclas...').
+acerca_de_menu('Acerca de...').
+
+%Barra estado
+barra_estado('Prg: ~w, Obj: ~w, Est: ~w, Nodos: ~d, Prof: ~d, R.Sel: ~w, R.Búsq: ~w').
+ 
+%Zona dibujo
+exito('~d. éxito~n~w').
+fallo('~d) ~w~nfallo').
+tope('~d) ~w~n...').
+ciclo_ciclica('~d) ~w~nRama~nciclica->~d').
+ciclo_repetida('~d) ~w~nRama~nrepetida->~d').
+corte('~d) Rama~npodada cl(~d)').
+
+%Errores
+error_nombre_fichero('No se ha encontrado ~n~n~w').
+error_lectura_fichero('Error de sintexis en ~w~n~w~nFila : ~d').
+error_creacion_arbol('Se ha producido un error~n~w~nInténtelo de nuevo').
+error_falta_memoria('Falta memoria para la pila global.\nGráfico incompleto').
+
+%Pasos de resolución
+pasos_de_resolucion('Pasos de resolución').
+clausula_seleccionada('Cláusula seleccionada: ').
+objetivo_previo('Objetivo previo: ').
+formula_atomica_seleccionada('Formula atómica seleccionada: ').
+nuevo_objetivo('Nuevo Objetivo: ').
+iteracion('Iteracion ').
+unifican('---------> Unifican').
+paso1('   Paso 1: ').
+paso2('   Paso 2: Par de discordancia D').
+paso3('   Paso 3: ').
+paso4('   Paso 4: ').
+paso5('   Paso 5: Sigma').
+son_iguales('Son iguales').
+son_distintos('Son distintos').
+variable_y_termino('Variable y termino. OK').
+no_occur_chech('No hay occur check. OK').
+
+%Acerca de 
+ac_visualizacion('Visualizador de árboles Sld').
+ac_version('Versión en Español').    
+ac_arboles('Arboles SLD / SLD trees').
+ac_director('Director del proyecto : ~w').
+ac_alumno('Alumno : ~w').
+ac_fecha('Enero 2002 - Enero 2003').
+		  
+

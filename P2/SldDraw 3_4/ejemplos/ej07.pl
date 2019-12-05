@@ -1,0 +1,11 @@
+basico(X):-
+	atomic(X),
+	!.
+basico(X):-
+	compound(X),
+	X=..[F|Args],
+	basicoLista(Args).
+basicoLista([]).
+basicoLista([X|Xs]):-
+	basico(X),
+	basicoLista(Xs).
