@@ -1,6 +1,85 @@
+%%Condición de exito
+orillas([lobo,oveja,col],[pastor]).
+
+%Situaciones posibles
+%
+orillas([pastor,lobo,oveja,col],[]).
+orillas([lobo],[pastor,oveja,col]).
+orillas([oveja],[pastor,lobo,col]).
+orillas([col],[pastor,lobo,oveja]).
+orillas([pastor,oveja],[lobo,col]).
+orillas([lobo,col],[pastor,oveja]).
+orillas([pastor,lobo,oveja],[col]).
+orillas([oveja,col,pastor],[lobo]).
+orillas([col,pastor,lobo],[oveja]).
+%
+%las situaciones que no se pueden dar
+%
+%orillas([pastor],[lobo,oveja,col]).
+%orillas([pastor,lobo],[oveja,col]).
+%orillas([pastor,col],[lobo,oveja]).
+%orillas([lobo,oveja],[pastor,col]).
+%orillas([oveja,col],[pastor,lobo]).
+%orillas([lobo,oveja,col],[pastor]).
+%
+buscar(Valor,[Valor | Cola]).
+buscar(Valor,[Otro | Cola]):- buscar(Valor,Cola).
+
+agregar([], L, L).
+agregar([H|L1], L2, [H|L3]):- agregar(L1, L2, L3).
+
+mover(Orilla,pastor,Resul):- buscar(pastor,Orilla), extraer(pastor,Orilla,Resul).
+mover(Orilla,oveja,Resul):- buscar(oveja,Orilla), extraer(oveja,Orilla,Resul).
+mover(Orilla,lobo,Resul):- buscar(lobo,Orilla), extraer(lobo,Orilla,Resul).
+mover(Orilla,col,Resul):- buscar(col,Orilla), extraer(col,Orilla,Resul).
+
+solucion(ListaInicial,X):-solucionR(ListaInicial,[],X).
+solucionR([],X,X).
+solucionR([pastor,lobo,oveja,col],X,Salida):-mover([pastor,lobo,oveja,col],pastor,Resultado), 
+    										agregar([pastor],X,XX),
+    										mover(Resultado,QueMuevo,Resultado2), 
+    										agregar([QueMuevo],XX,XXX),
+    										solucionR(Resultado2,XXX,Salida),
+    										
+    
+solucionR(OrillaOrigen,X,Salida):-buscar(pastor,OrillaOrigen),mover(OrillaOrigen,)(xtraer(pastor,OrillaOrigen,X)mover(OrillaOrigen,pastor,OrillaDestino),
+
+
+
+
+
+
+
+
+
+
+
+%[pastor,lobo,cabra,col]
+
+cambiar(d,i).
+cambiar(i,d).
+
+%mover
+mover([X,X,Cabra,Col],lobo,[Y,Y,Cabra,Col]):- cambiar(X,Y).
+mover([X,Lobo,X,Col],cabra,[Y,Lobo,Y,Col]):- cambiar(X,Y).
+mover([X,Lobo,Cabra,X],col,[Y,Lobo,Cabra,Y]):- cambiar(X,Y).
+mover([X,Lobo,Cabra,Col],nada,[Y,Lobo,Cabra,ColX]):- cambiar(X,Y).
+
+%revisar
+
+esIgual(X,X,_).
+esIgual(X,_,X).
+
+%verificar
+verificacion([Pastor,Lobo,Cabra,Col]):- esIgual(Pastor,Cabra,Lobo), esIgual(Pastor,Cabra,Col).
+
+%Hallar solucion
+solucion([d,d,d,d],[]).
+solucion(Config,[Movi|Rest]):- mover(Config,Movi,SigConfig),verificacion(SigConfig), solucion(SigConfig,Rest).
+
 %Condición de exito
 orillas([lobo,oveja,col],[pastor]).
-%
+
 %Situaciones posibles
 %
 orillas([pastor,lobo,oveja,col],[]).
